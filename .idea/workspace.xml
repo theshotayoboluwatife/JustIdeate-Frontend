@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="79a276b5-97ea-4f0c-97db-42e92673fe79" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.prettierignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.replit" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Change your password_1751174611622.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Group 1 (2)_1750796301451.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Group 1 (3)_1750796617422.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Profile email updated_1751137242283.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Profile email updated_1751137253003.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-23 at 2.53.19 PM_1750715868751.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-23 at 3.38.24 PM_1750718305985.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-23 at 3.39.49 PM_1750718390227.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-23 at 3.41.50 PM_1750718513295.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-23 at 3.46.43 PM_1750718807361.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-23 at 3.52.20 PM_1750719141421.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-23 at 3.57.16 PM_1750719437830.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-23 at 4.06.03 PM_1750719964178.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-23 at 4.14.12 PM_1750720453858.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-23 at 4.14.37 PM_1750720478596.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-23 at 4.18.03 PM_1750720683966.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-23 at 4.32.05 PM_1750721526781.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-23 at 4.40.46 PM_1750722048950.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-23 at 5.01.17 PM_1750723279893.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-23 at 5.02.00 PM_1750723325442.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-23 at 6.08.50 PM_1750727331610.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-23 at 6.52.43 PM_1750729965997.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 1.37.09 PM_1750797431691.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 1.37.18 PM_1750797439834.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 1.37.47 PM_1750797468222.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 1.38.05 PM_1750797486347.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 10.01.47 PM_1750827709552.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 10.47.38 PM_1750830476474.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 10.51.19 PM_1750830680362.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 10.55.17 PM_1750830918770.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 11.27.19 PM_1750832840463.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 11.28.59 PM_1750832940168.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 11.34.00 PM_1750833241466.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 11.44.22 PM_1750833863307.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 2.00.00 PM_1750798805727.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 2.00.14 PM_1750798819997.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 2.34.12 PM_1750800853098.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 2.43.07 PM_1750801388084.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 2.45.02 PM_1750801503273.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 2.48.28 PM_1750801712051.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 2.52.02 PM_1750801923674.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 3.15.08 PM_1750803309720.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 4.03.37 PM_1750806218173.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 4.10.47 PM_1750806648268.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 4.12.46 PM_1750806767697.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 4.16.24 PM_1750806985836.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 4.18.52 PM_1750807133987.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 4.29.05 PM_1750807747428.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 4.41.50 PM_1750808513285.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 4.42.55 PM_1750808578118.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 4.43.15 PM_1750808598213.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 4.43.47 PM_1750808630439.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 4.44.50 PM_1750808692904.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 5.26.22 PM_1750811183658.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 6.16.06 PM_1750814168752.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 6.16.17 PM_1750814179348.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 9.44.06 PM_1750826650033.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 9.46.06 PM_1750826767280.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-24 at 9.46.10 PM_1750826771607.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-25 at 1.26.47 PM_1750883210456.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-25 at 1.33.29 PM_1750883610584.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-25 at 1.56.37 PM_1750884998481.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-25 at 12.32.48 PM_1750879969179.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-25 at 12.53.11 PM_1750881192095.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-25 at 12.54.51 PM_1750881292677.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-25 at 12.55.08 PM_1750881309957.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-25 at 2.23.47 PM_1750886629356.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-25 at 3.52.00 PM_1750891921754.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-25 at 4.47.11 PM_1750895233821.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-25 at 4.50.25 PM_1750895428363.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-25 at 4.52.27 PM_1750895549471.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-25 at 4.52.49 PM_1750895570036.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-25 at 4.57.11 PM_1750895832842.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-25 at 5.21.18 PM_1750897282225.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-25 at 5.27.02 PM_1750897623421.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-25 at 5.42.19 PM_1750898541603.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-25 at 5.44.31 PM_1750898672675.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-27 at 11.39.37 PM_1751092778427.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-28 at 10.04.28 PM_1751173470588.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-28 at 11.13.08 AM_1751134390838.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-28 at 11.14.22 AM_1751134464870.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-28 at 11.25.23 AM_1751135126844.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-28 at 11.43.08 AM_1751136193127.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-28 at 11.43.19 AM_1751136204077.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-28 at 11.49.49 AM_1751136646825.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-28 at 11.50.12 AM_1751136646825.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-28 at 11.50.16 AM_1751136646825.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-28 at 11.55.24 AM_1751136928995.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-28 at 7.03.25 PM_1751162608462.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-28 at 9.12.57 AM_1751127180322.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-28 at 9.48.38 PM_1751172522302.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-28 at 9.55.49 PM_1751172952253.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-29 at 10.10.36 AM_1751217039069.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-29 at 10.13.53 AM_1751217236235.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-29 at 10.26.32 AM_1751217995046.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-29 at 10.49.46 AM_1751219389718.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-29 at 10.50.04 AM_1751219406685.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-29 at 11.13.33 AM_1751220819457.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-29 at 11.20.21 AM_1751221223996.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-29 at 11.20.45 AM_1751221248774.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-29 at 11.21.09 AM_1751221271387.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-29 at 11.30.05 AM_1751221807680.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-29 at 11.43.48 AM_1751222631554.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-29 at 11.50.02 AM_1751223005262.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-29 at 11.52.21 AM_1751223143344.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-29 at 2.25.59 PM_1751232364759.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-29 at 9.08.02 AM_1751213283364.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-29 at 9.44.42 AM_1751215484537.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-29 at 9.47.27 AM_1751215650156.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-06-29 at 9.52.48 AM_1751215970270.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-07-18 at 6.21.51 PM_1752888114546.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-07-18 at 6.25.19 PM_1752888322555.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-07-18 at 6.36.27 PM_1752888989908.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/Screenshot 2025-07-18 at 6.36.40 PM_1752889003249.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attached_assets/profileid 7986ddab-883d-4ec_1751215062387.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/masonry-grid.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/masonry-grid.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/navigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/upload-modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/upload-modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/zine-card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/zine-card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/hooks/use-auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/use-auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/lib/supabase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/lib/supabase.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/replit.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/database.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/memory-storage.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/replitAuth.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/storage-interface.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/storage.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/supabase-auth.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/supabase-db.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/supabase-storage.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/vite.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/shared/schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vite.config.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="30Wi0qza4UPnRCb4ER9giZ0gDGL" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="79a276b5-97ea-4f0c-97db-42e92673fe79" name="Changes" comment="" />
+      <created>1753749510194</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1753749510194</updated>
+    </task>
+    <servers />
+  </component>
+</project>
