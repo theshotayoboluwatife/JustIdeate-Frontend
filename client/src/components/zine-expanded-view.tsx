@@ -26,8 +26,8 @@ export function ZineExpandedView({
   const rawMediaUrls = Array.isArray(zine.mediaUrls)
     ? zine.mediaUrls.filter((url) => url !== null)
     : zine.mediaUrls
-      ? [zine.mediaUrls]
-      : [];
+    ? [zine.mediaUrls]
+    : [];
 
   // If no mediaUrls but we have imageUrl, use that
   const mediaUrls =
@@ -42,7 +42,7 @@ export function ZineExpandedView({
 
   const prevImage = () => {
     setCurrentImageIndex(
-      (prev) => (prev - 1 + mediaUrls.length) % mediaUrls.length,
+      (prev) => (prev - 1 + mediaUrls.length) % mediaUrls.length
     );
   };
 

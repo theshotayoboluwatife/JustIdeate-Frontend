@@ -17,7 +17,7 @@ interface CreatorCardProps {
 
 function CreatorCard({ creator }: CreatorCardProps) {
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
+    <div className="bg-black text-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
       <div className="flex items-center space-x-4">
         <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
           {creator.profileImageUrl ? (
@@ -107,10 +107,10 @@ function CreatorsGrid({ creators, isLoading }: CreatorsGridProps) {
               d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
             />
           </svg>
-          <h3 className="mt-2 text-sm font-medium text-gray-900">
+          <h3 className="mt-2 text-sm font-medium text-gray-400">
             No creators found
           </h3>
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-sm text-white">
             Try adjusting your search terms.
           </p>
         </div>
@@ -164,8 +164,8 @@ export default function Home() {
           activeTab === "popular"
             ? "popular"
             : activeTab === "all"
-              ? undefined
-              : activeTab,
+            ? undefined
+            : activeTab,
         search: debouncedSearch || undefined,
         userId: currentUser?.id,
       },
@@ -236,7 +236,7 @@ export default function Home() {
       }
 
       return fetch(
-        `/api/users/${currentUser.id}/favorites?${params.toString()}`,
+        `/api/users/${currentUser.id}/favorites?${params.toString()}`
       ).then((res) => res.json());
     },
     enabled: isAuthenticated && activeTab === "favorites" && !!currentUser,
@@ -261,7 +261,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-black">
       <Header onSearch={setSearchQuery} searchQuery={searchQuery} />
       <HeroSection
         onSearch={setSearchQuery}
@@ -274,7 +274,7 @@ export default function Home() {
         userId={user?.id}
       />
 
-      <div className="bg-white">
+      <div className="bg-black">
         {activeTab === "creators" ? (
           <CreatorsGrid creators={creators} isLoading={creatorsLoading} />
         ) : (

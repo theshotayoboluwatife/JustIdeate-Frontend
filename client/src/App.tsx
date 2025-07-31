@@ -12,17 +12,21 @@ import AuthCallback from "@/pages/auth-callback";
 import ProjectEditor from "@/components/project-editor";
 import UpdatePasswordPage from "./pages/update-password";
 
-import { setupMockFetch } from '@/lib/mock-api';
+import { setupMockFetch } from "@/lib/mock-api";
+import { BreadcrumbLink } from "./components/ui/breadcrumb";
 
 // Enable mock API for demo mode when Supabase credentials are missing
-if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY) {
+if (
+  !import.meta.env.VITE_SUPABASE_URL ||
+  !import.meta.env.VITE_SUPABASE_ANON_KEY
+) {
   console.log("🎭 Demo Mode: Enabling mock API");
   setupMockFetch();
 }
 
 function Router() {
   return (
-    <div className="animate-page-enter">
+    <div className="bg-black text-white animate-page-enter">
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/about" component={About} />

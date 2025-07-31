@@ -31,7 +31,7 @@ export function MasonryGrid({
 }: MasonryGridProps) {
   const { user } = useAuth();
   const [selectedZine, setSelectedZine] = useState<ZineWithCreator | null>(
-    null,
+    null
   );
   const [isExpandedViewOpen, setIsExpandedViewOpen] = useState(false);
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
@@ -49,7 +49,7 @@ export function MasonryGrid({
   };
   if (isLoading) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-black">
         <div className="masonry-grid">
           {Array.from({ length: 6 }).map((_, index) => (
             <div
@@ -65,7 +65,7 @@ export function MasonryGrid({
 
   if (zines.length === 0) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center bg-black">
         <div className="max-w-md mx-auto">
           <div className="w-16 h-16 bg-subtle-custom rounded-full flex items-center justify-center mx-auto mb-4">
             {isProfilePage ? (
@@ -86,7 +86,7 @@ export function MasonryGrid({
               </svg>
             )}
           </div>
-          <h3 className="text-lg font-medium text-primary-custom mb-2">
+          <h3 className="text-lg text-white font-medium mb-2">
             {isProfilePage
               ? isOwnProfile
                 ? "Start sharing your creativity"
@@ -117,9 +117,9 @@ export function MasonryGrid({
   // For profile pages, use a simple grid layout
   if (isProfilePage) {
     return (
-      <div className="w-full">
+      <div className="w-full bg-black">
         {zines.length === 0 ? (
-          <div className="text-center py-12">
+          <div className="text-center py-12 bg-black">
             <div className="text-gray-400 mb-4">
               <svg
                 className="w-16 h-16 mx-auto"
@@ -170,8 +170,8 @@ export function MasonryGrid({
 
   // For main feed, use 3-column grid layout
   const mainContent = (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="mx-auto px-4 sm:px-6 lg:px-8 py-6 bg-black">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 bg-black">
         {zines.map((zine) => (
           <ZineCard key={zine.id} zine={zine} onExpand={handleZineExpand} />
         ))}
@@ -188,7 +188,7 @@ export function MasonryGrid({
   return (
     <>
       {isProfilePage ? (
-        <div className="w-full">
+        <div className="w-full bg-black">
           {zines.length === 0 ? (
             <div className="text-center py-12">
               <div className="text-gray-400 mb-4">
@@ -216,7 +216,7 @@ export function MasonryGrid({
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 bg-black">
               {zines.map((zine) => (
                 <ZineCard
                   key={zine.id}

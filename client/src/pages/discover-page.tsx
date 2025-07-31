@@ -13,7 +13,7 @@ interface CreatorCardProps {
 
 function CreatorCard({ creator }: CreatorCardProps) {
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
+    <div className="bg-black text-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
       <div className="flex items-center space-x-4">
         <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
           {creator.avatar_url ? (
@@ -62,7 +62,7 @@ interface CreatorsGridProps {
 function CreatorsGrid({ creators, isLoading }: CreatorsGridProps) {
   if (isLoading) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="bg-black max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(9)].map((_, i) => (
             <div key={i} className="bg-gray-100 rounded-lg p-6 animate-pulse">
@@ -86,7 +86,7 @@ function CreatorsGrid({ creators, isLoading }: CreatorsGridProps) {
 
   if (creators.length === 0) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+      <div className="max-w-7xl bg-black text-white mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
         <div className="text-gray-500">
           <svg
             className="mx-auto h-12 w-12 text-gray-400"
@@ -113,7 +113,7 @@ function CreatorsGrid({ creators, isLoading }: CreatorsGridProps) {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-black">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {creators.map((creator) => (
           <CreatorCard key={creator.id} creator={creator} />
@@ -176,7 +176,7 @@ function DiscoverNavigation({
   ];
 
   return (
-    <div className="bg-white border-b border-gray-200">
+    <div className="bg-black border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex space-x-8">
           {filters.map((filter) => (
