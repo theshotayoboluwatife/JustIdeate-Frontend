@@ -168,6 +168,7 @@
   --text-primary: hsl(0, 0%, 8%);
   --text-secondary: hsl(0, 0%, 45%);
   --bg-subtle: hsl(0, 0%, 96%);
+  
 }
 
 .dark {
@@ -199,7 +200,8 @@
   }
 
   body {
-    @apply font-inter antialiased bg-background text-foreground;
+    @apply font-inter bg-black antialiased text-foreground;
+
   }
 
   h1,

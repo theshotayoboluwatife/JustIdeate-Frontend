@@ -89,9 +89,9 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] bg-[#181818]">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-raleway font-bold">
+          <DialogTitle className="text-2xl font-raleway font-bold text-white">
             {isLogin ? "Sign In" : "Create Account"}
           </DialogTitle>
         </DialogHeader>
@@ -99,7 +99,9 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
         <form onSubmit={handleSubmit} className="space-y-4">
           {isLogin ? (
             <div className="space-y-2">
-              <Label htmlFor="emailOrUsername">Email or Username</Label>
+              <Label className="text-white" htmlFor="emailOrUsername">
+                Email or Username
+              </Label>
               <Input
                 id="emailOrUsername"
                 type="text"
@@ -112,7 +114,9 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
             </div>
           ) : (
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label className="text-white" htmlFor="email">
+                Email
+              </Label>
               <Input
                 id="email"
                 type="email"
@@ -126,7 +130,9 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
           )}
 
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <Label className="text-white" htmlFor="password">
+              Password
+            </Label>
             <Input
               id="password"
               type="password"
@@ -144,7 +150,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
               <button
                 type="button"
                 onClick={() => setShowForgotPassword(true)}
-                className="text-xs text-[#2b3012] hover:underline"
+                className="text-xs text-white hover:underline"
               >
                 Forgot Password?
               </button>
@@ -154,7 +160,9 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
           {!isLogin && (
             <>
               <div className="space-y-2">
-                <Label htmlFor="username">Username</Label>
+                <Label className="text-white" htmlFor="username">
+                  Username
+                </Label>
                 <Input
                   id="username"
                   type="text"
@@ -167,7 +175,9 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="bio">Bio (optional)</Label>
+                <Label className="text-white" htmlFor="bio">
+                  Bio (optional)
+                </Label>
                 <Input
                   id="bio"
                   type="text"
@@ -182,17 +192,17 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
           <Button
             type="submit"
-            className="w-full bg-[#2b3012] hover:bg-[#364636] text-white"
+            className="w-full bg-[#364636] hover:bg-[#525252] text-white"
             disabled={isLoading}
           >
             {isLoading ? "Loading..." : isLogin ? "Sign In" : "Create Account"}
           </Button>
 
-          <div className="text-center">
+          <div className="text-center text-white">
             <button
               type="button"
               onClick={switchMode}
-              className="text-sm text-[#2b3012] hover:underline"
+              className="text-sm text-white hover:underline"
               disabled={isLoading}
             >
               {isLogin
@@ -233,7 +243,9 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
             className="space-y-4"
           >
             <div className="space-y-2">
-              <Label htmlFor="resetIdentifier">Email or Username</Label>
+              <Label className="text-white" htmlFor="resetIdentifier">
+                Email or Username
+              </Label>
               <Input
                 id="resetIdentifier"
                 type="text"

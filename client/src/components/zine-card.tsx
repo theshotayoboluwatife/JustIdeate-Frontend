@@ -395,7 +395,6 @@
 //   );
 // }
 
-
 import { useState, useRef } from "react";
 import {
   Star,
@@ -453,8 +452,8 @@ export function ZineCard({ zine, onExpand }: ZineCardProps) {
     Array.isArray(zine.mediaUrls) && zine.mediaUrls.length > 0
       ? zine.mediaUrls
       : zine.imageUrl
-        ? [zine.imageUrl]
-        : [];
+      ? [zine.imageUrl]
+      : [];
 
   const currentMedia = mediaUrls[currentMediaIndex];
   const isVideo = currentMedia && /\.(mp4|webm|ogg|mov)$/i.test(currentMedia);
@@ -567,7 +566,7 @@ export function ZineCard({ zine, onExpand }: ZineCardProps) {
   const prevMedia = (e: React.MouseEvent) => {
     e.stopPropagation();
     setCurrentMediaIndex(
-      (prev) => (prev - 1 + mediaUrls.length) % mediaUrls.length,
+      (prev) => (prev - 1 + mediaUrls.length) % mediaUrls.length
     );
   };
 
@@ -666,8 +665,8 @@ export function ZineCard({ zine, onExpand }: ZineCardProps) {
                   }}
                   className={`w-2 h-2 rounded-full transition-all duration-200 ${
                     index === currentMediaIndex
-                      ? "bg-white"
-                      : "bg-white bg-opacity-50"
+                      ? "bg-black"
+                      : "bg-black bg-opacity-50"
                   }`}
                 />
               ))}
@@ -691,7 +690,9 @@ export function ZineCard({ zine, onExpand }: ZineCardProps) {
                   <div className="animate-pulse w-4 h-4 bg-gray-300 rounded-full" />
                 ) : (
                   <Star
-                    className={`w-4 h-4 ${isFavorited ? "fill-black text-black" : "text-gray-600"}`}
+                    className={`w-4 h-4 ${
+                      isFavorited ? "fill-black text-black" : "text-gray-600"
+                    }`}
                   />
                 )}
               </button>

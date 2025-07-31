@@ -14,7 +14,7 @@ export function Navigation({
   userId,
 }: NavigationProps) {
   const handleTabChange = (
-    tab: "all" | "popular" | "favorites" | "creators",
+    tab: "all" | "popular" | "favorites" | "creators"
   ) => {
     // Track tab change
     if (userId) {
@@ -23,15 +23,15 @@ export function Navigation({
     onTabChange(tab);
   };
   return (
-    <div className="pb-8 bg-[#f6f6f6]">
+    <div className="pb-8 bg-black">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav className="flex justify-center space-x-12">
           <motion.button
             onClick={() => handleTabChange("all")}
             className={`pb-3 px-2 border-b-2 font-semibold text-lg transition-colors ${
               activeTab === "all"
-                ? "border-[#2b3012] text-[#2b3012]"
-                : "border-transparent text-black hover:text-gray-700"
+                ? "border-white text-white"
+                : "border-transparent text-white hover:text-[#666666]"
             }`}
             variants={buttonVariants}
             initial="rest"
@@ -44,8 +44,8 @@ export function Navigation({
             onClick={() => handleTabChange("creators")}
             className={`pb-3 px-2 border-b-2 font-semibold text-lg transition-colors ${
               activeTab === "creators"
-                ? "border-[#2b3012] text-[#2b3012]"
-                : "border-transparent text-black hover:text-gray-700"
+                ? "border-white text-white"
+                : "border-transparent text-white hover:text-[#666666]"
             }`}
             variants={buttonVariants}
             initial="rest"
@@ -75,8 +75,8 @@ export function Navigation({
             onClick={() => handleTabChange("favorites")}
             className={`pb-3 px-2 border-b-2 font-semibold text-lg transition-colors ${
               activeTab === "favorites"
-                ? "border-[#2b3012] text-[#2b3012]"
-                : "border-transparent text-black hover:text-gray-700"
+                ? "border-white text-white"
+                : "border-transparent text-white hover:text-[#666666]"
             }`}
             variants={buttonVariants}
             initial="rest"

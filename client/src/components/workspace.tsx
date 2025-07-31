@@ -176,12 +176,12 @@ export function Workspace({ userId }: WorkspaceProps) {
         "🗑️ Frontend delete mutation called for project:",
         projectId,
         "userId:",
-        userId,
+        userId
       );
       const response = await apiRequest(
         "DELETE",
         `/api/projects/${projectId}`,
-        { userId },
+        { userId }
       );
       console.log("Delete response:", response);
       return response.json();
@@ -212,7 +212,7 @@ export function Workspace({ userId }: WorkspaceProps) {
       const response = await apiRequest(
         "POST",
         "/api/focus-sessions",
-        sessionData,
+        sessionData
       );
       return response.json();
     },
@@ -247,7 +247,7 @@ export function Workspace({ userId }: WorkspaceProps) {
       setSelectedProject(projectSwitchModal.newProject);
       localStorage.setItem(
         `selected-project-${userId}`,
-        JSON.stringify(projectSwitchModal.newProject),
+        JSON.stringify(projectSwitchModal.newProject)
       );
     }
     setProjectSwitchModal({ isOpen: false, newProject: null });
@@ -262,7 +262,7 @@ export function Workspace({ userId }: WorkspaceProps) {
       const response = await apiRequest(
         "PUT",
         `/api/projects/${projectId}/toggle-completion`,
-        { userId },
+        { userId }
       );
       return response;
     },
@@ -288,7 +288,9 @@ export function Workspace({ userId }: WorkspaceProps) {
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+    return `${mins.toString().padStart(2, "0")}:${secs
+      .toString()
+      .padStart(2, "0")}`;
   };
 
   const getTimerDuration = () => {
@@ -352,10 +354,10 @@ export function Workspace({ userId }: WorkspaceProps) {
             setSelectedProject(updatedProject);
             localStorage.setItem(
               `selected-project-${userId}`,
-              JSON.stringify(updatedProject),
+              JSON.stringify(updatedProject)
             );
           },
-        },
+        }
       );
     }
 
@@ -425,10 +427,10 @@ export function Workspace({ userId }: WorkspaceProps) {
                   setSelectedProject(updatedProject);
                   localStorage.setItem(
                     `selected-project-${userId}`,
-                    JSON.stringify(updatedProject),
+                    JSON.stringify(updatedProject)
                   );
                 },
-              },
+              }
             );
           }
         }
@@ -450,8 +452,7 @@ export function Workspace({ userId }: WorkspaceProps) {
       interval = setInterval(() => {
         const elapsed = Math.floor((Date.now() - timerStartTime) / 1000);
         const savedTime = parseInt(
-          localStorage.getItem(`timer-time-${userId}`) ||
-            currentTime.toString(),
+          localStorage.getItem(`timer-time-${userId}`) || currentTime.toString()
         );
         const newTime = Math.max(0, savedTime - elapsed);
 
@@ -472,7 +473,7 @@ export function Workspace({ userId }: WorkspaceProps) {
     if (userId) {
       localStorage.setItem(
         `timer-duration-${userId}`,
-        customDuration.toString(),
+        customDuration.toString()
       );
       // Only reset the timer if it's not running AND it's at the full duration
       // This prevents resetting a paused timer when duration changes
@@ -830,8 +831,8 @@ function ProjectForm({ project, onSubmit, isLoading }: ProjectFormProps) {
         {isLoading
           ? "Saving..."
           : project
-            ? "Update Project"
-            : "Create Project"}
+          ? "Update Project"
+          : "Create Project"}
       </Button>
     </form>
   );
@@ -948,7 +949,7 @@ function ProjectCard({
                     onClick={() => {
                       console.log(
                         "🗑️ Delete button clicked for project:",
-                        project.id,
+                        project.id
                       );
                       onDelete();
                     }}

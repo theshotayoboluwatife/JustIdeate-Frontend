@@ -76,15 +76,21 @@ export function Header({}: HeaderProps) {
                 >
                   <span>About</span>
                 </div>
+                <div
+                  className="text-white cursor-pointer hover:opacity-80 transition-opacity"
+                  onClick={() => (window.location.href = "/resources")}
+                >
+                  <span>Resources</span>
+                </div>
               </div>
             </div>
             {/* Right Side - Upload & Profile */}
             <div className="flex items-center space-x-4">
               <Button
-                className="hover:bg-gray-300 text-black font-medium px-4 py-2 rounded bg-[#ffffff]"
+                className="hover:bg-gray-300 hover:text-black text-white font-medium px-4 py-2 border-dotted border-gray-300 rounded-lg bg-[#3C3C3C]"
                 onClick={() => setIsUploadModalOpen(true)}
               >
-                + Upload
+                Create
               </Button>
               {/* Profile Icon */}
               <div

@@ -1,4 +1,3 @@
-
 import { useParams, Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
@@ -50,7 +49,7 @@ interface CreatorCardProps {
 
 function CreatorCard({ creator }: CreatorCardProps) {
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
+    <div className="bg-black text-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
       <div className="flex items-center space-x-4">
         <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
           {creator.profileImageUrl ? (
@@ -178,7 +177,7 @@ export default function Profile() {
   >(
     tabFromUrl === "workspace" || tabFromUrl === "favorites"
       ? tabFromUrl
-      : "zines",
+      : "zines"
   );
 
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
@@ -221,7 +220,7 @@ export default function Profile() {
       Analytics.trackPageView(
         currentUser?.id,
         "Profile",
-        `/profile/${profileId}`,
+        `/profile/${profileId}`
       );
     }
   }, [profileId, currentUser?.id]);
@@ -254,11 +253,11 @@ export default function Profile() {
       queryKey: [`/api/users/${currentUser?.id}/favorite-creators`],
       queryFn: async () => {
         console.log(
-          "🔍 Running favorite creators queryFn - this should match your backend log",
+          "🔍 Running favorite creators queryFn - this should match your backend log"
         );
 
         const response = await fetch(
-          `/api/users/${currentUser?.id}/favorite-creators`,
+          `/api/users/${currentUser?.id}/favorite-creators`
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -319,7 +318,7 @@ export default function Profile() {
       const response = await apiRequest(
         "PUT",
         `/api/users/${profileId}`,
-        updates,
+        updates
       );
       return response.json();
     },
@@ -344,7 +343,7 @@ export default function Profile() {
         `/api/users/${currentUser.id}/profile-picture`,
         {
           base64Image,
-        },
+        }
       );
 
       if (!res.ok) {
@@ -416,7 +415,7 @@ export default function Profile() {
   };
 
   const handleProfileImageChange = async (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -460,7 +459,7 @@ export default function Profile() {
 
   if (userLoading) {
     return (
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-black text-white">
         <Header onSearch={() => {}} searchQuery="" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="animate-pulse">
@@ -475,7 +474,7 @@ export default function Profile() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-black text-white">
         <Header onSearch={setSearchQuery} searchQuery={searchQuery} />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
           <h1 className="text-2xl font-bold text-primary-custom mb-4">
@@ -492,16 +491,18 @@ export default function Profile() {
   const showPublicEmail = user.showPublicEmail && user.email;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-black text-white">
       <Header onSearch={() => {}} searchQuery="" />
 
       {/* Profile Header */}
-      <div className="bg-white border-b border-gray-100">
+      <div className="bg-black">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center relative">
             {/* Profile Photo */}
             <div
-              className={`w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center relative ${isOwnProfile ? "group cursor-pointer" : ""}`}
+              className={`w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center relative ${
+                isOwnProfile ? "group cursor-pointer" : ""
+              }`}
             >
               {user.profileImageUrl ? (
                 <img
@@ -510,7 +511,7 @@ export default function Profile() {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                <div className="profile_icon w-full h-full bg-gray-200 flex items-center justify-center cursor-pointer">
                   <svg
                     className="w-16 h-16 text-gray-400"
                     fill="currentColor"
@@ -643,7 +644,7 @@ export default function Profile() {
                 </div>
               ) : (
                 <>
-                  <h1 className="text-3xl font-bold text-primary-custom">
+                  <h1 className="text-3xl font-bold text-white mt-[-20px]">
                     {user.username}
                   </h1>
                   {/* @username */}
@@ -730,19 +731,22 @@ export default function Profile() {
               ) : (
                 <div className="max-w-2xl mx-auto px-4 relative">
                   <div
-                    className={`text-center ${isOwnProfile ? "group cursor-pointer" : ""}`}
+                    className={`text-center ${
+                      isOwnProfile ? "group cursor-pointer" : ""
+                    }`}
                     onClick={isOwnProfile ? handleEditBio : undefined}
                   >
-                    {user.bio ? (
-                      <p className="text-secondary-custom text-lg leading-relaxed break-words whitespace-pre-wrap text-center">
-                        {user.bio}
-                      </p>
-                    ) : isOwnProfile ? (
-                      <p className="text-gray-400 text-lg leading-relaxed text-center">
-                        Add a bio to tell people about yourself
-                      </p>
-                    ) : null}
-
+                    <div className="about_profile">
+                      {user.bio ? (
+                        <p className="text-secondary-custom text-lg leading-relaxed break-words whitespace-pre-wrap text-center">
+                          {user.bio}
+                        </p>
+                      ) : isOwnProfile ? (
+                        <p className="text-gray-400 text-lg leading-relaxed text-center">
+                          Add a bio to tell people about yourself
+                        </p>
+                      ) : null}
+                    </div>
                     {/* Website URL */}
                     {user.websiteUrl && (
                       <div className="text-center mt-4">
@@ -775,7 +779,7 @@ export default function Profile() {
       </div>
 
       {/* Profile Content */}
-      <div className="bg-gray-50">
+      <div className="bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Tab Navigation - Only show for own profile */}
           {isOwnProfile && (
@@ -792,7 +796,7 @@ export default function Profile() {
                   {/* <Grid className="w-4 h-4 mr-2 inline" /> */}
                   Your Zines
                 </button>
-                
+
                 {/* <button
                   onClick={() => setActiveTab("workspace")}
                   className={`pb-3 px-2 border-b-2 font-semibold text-lg transition-colors ${

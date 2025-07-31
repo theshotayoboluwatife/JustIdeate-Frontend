@@ -45,6 +45,7 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
   const [files, setFiles] = useState<File[]>([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [url, setURL] = useState("");
   const [isUploading, setIsUploading] = useState(false);
   const [currentPreviewIndex, setCurrentPreviewIndex] = useState(0);
 
@@ -78,7 +79,7 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
     mutationFn: async (zineData: any) => {
       console.log(
         "💫 MUTATION FUNCTION CALLED with data:",
-        JSON.stringify(zineData, null, 2),
+        JSON.stringify(zineData, null, 2)
       );
       const response = await apiRequest("POST", "/api/zines", zineData);
       const result = await response.json();
@@ -194,11 +195,11 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
   const navigatePreview = (direction: "prev" | "next") => {
     if (direction === "prev") {
       setCurrentPreviewIndex((prev) =>
-        prev > 0 ? prev - 1 : files.length - 1,
+        prev > 0 ? prev - 1 : files.length - 1
       );
     } else {
       setCurrentPreviewIndex((prev) =>
-        prev < files.length - 1 ? prev + 1 : 0,
+        prev < files.length - 1 ? prev + 1 : 0
       );
     }
   };
@@ -251,7 +252,7 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
           type: file.type,
           size: file.size,
           name: file.name,
-        })),
+        }))
       );
 
       const zineData = {
@@ -292,6 +293,7 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
     setFiles([]);
     setTitle("");
     setDescription("");
+    setURL("");
     setIsUploading(false);
     setCurrentPreviewIndex(0);
     onClose();
@@ -309,15 +311,12 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
     }
   };
 
-  
-  
-
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl mx-4 p-0 overflow-hidden">
         <div className="flex h-[600px]">
           {/* Left Side - Preview Pane */}
-          <div className="flex-1 bg-white relative flex items-center justify-center">
+          <div className="flex-1 bg-[#000] opacity-90 relative flex items-center justify-center">
             {files.length === 0 ? (
               /* Empty state - Instagram-style drop zone */
               <div className="text-center text-gray-700">
@@ -335,12 +334,12 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
                       <CloudUpload className="w-8 h-8 text-gray-500" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold mb-2">
+                      <h3 className="text-xl text-gray-500 font-semibold mb-2">
                         Drag photos and videos here
                       </h3>
                       <p className="text-gray-500 mb-4">or click to browse</p>
                       <div className="inline-block text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#1877f2] transition-colors bg-[#364636]">
-                        Select from computer
+                        Choose Files
                       </div>
                     </div>
                   </div>
@@ -351,7 +350,9 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
               <div className="relative w-full h-full flex items-center justify-center">
                 {/* Image container with aspect ratio */}
                 <div
-                  className={`relative ${getAspectRatioClass(fileAspectRatios[currentPreviewIndex])} max-w-full max-h-full`}
+                  className={`relative ${getAspectRatioClass(
+                    fileAspectRatios[currentPreviewIndex]
+                  )} max-w-full max-h-full`}
                 >
                   {files[currentPreviewIndex].type.startsWith("video/") ? (
                     <video
@@ -460,10 +461,10 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
           </div>
 
           {/* Right Side - Form */}
-          <div className="w-80 bg-white p-6 flex flex-col">
+          <div className="w-80 bg-[#000] opacity-90 p-6 flex flex-col border-l border-l-[#888888] border-dashed">
             <DialogHeader className="mb-6">
-              <DialogTitle className="text-xl font-semibold text-gray-900">
-                Create new post
+              <DialogTitle className="text-xl font-semibold text-white">
+                Add Details
               </DialogTitle>
             </DialogHeader>
 
@@ -491,10 +492,10 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
               </div> */}
 
               {/* Description Input */}
-              <div className="flex-1">
+              <div className="flex-1 mb-[-45px]">
                 <Label
                   htmlFor="description"
-                  className="text-sm font-medium text-gray-700"
+                  className="text-sm font-medium text-white"
                 >
                   Blurb
                 </Label>
@@ -502,8 +503,26 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
                   id="description"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  placeholder="Write a caption..."
-                  className="mt-1 h-32 resize-none focus:border-[#2b3012] focus:ring-[#2b3012]"
+                  placeholder="Write a short description about your zine..."
+                  className="mt-1 h-32 border-r-0 border-l-0 border-t-0 border-b border-b-[#7c7c7c] rounded-none resize-none text-white focus:border-[#2b3012] bg-transparent focus:ring-[#2b3012]"
+                />
+              </div>
+
+              <div className="flex-1">
+                <Label
+                  htmlFor="description"
+                  className="text-sm font-medium text-white"
+                >
+                  Website URL (Optional)
+                </Label>
+                <br></br>
+                <input
+                  id="url"
+                  type="url"
+                  value={url}
+                  onChange={(e) => setURL(e.target.value)}
+                  placeholder="https://example.com"
+                  className="mt-1 w-[100%] h-10 pr-[5px] pl-[10px] text-white bg-transparent border-b  border-b-[#7c7c7c] resize-none focus:border-[#2b3012] focus:ring-[#2b3012]"
                 />
               </div>
 
