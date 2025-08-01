@@ -334,7 +334,7 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
                 <label htmlFor="file-upload" className="cursor-pointer">
                   <div className="space-y-4">
                     <div className="w-16 h-16 flex items-center justify-center mx-auto">
-                      <i class="fas fa-arrow-up-from-bracket text-gray-500 text-5xl"></i>
+                      <i className="fas fa-arrow-up-from-bracket text-gray-500 text-5xl"></i>
                     </div>
                     <div>
                       <h3 className="text-xl text-white font-semibold mb-2">
