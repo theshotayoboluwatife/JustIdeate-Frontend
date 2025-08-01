@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { buttonVariants } from "@/lib/animations";
 import Analytics from "@/lib/analytics";
+import { useEffect } from "react";
 
 interface NavigationProps {
   activeTab: "all" | "popular" | "favorites" | "creators";
@@ -22,38 +23,74 @@ export function Navigation({
     }
     onTabChange(tab);
   };
+
+  useEffect(() => {
+    if (window.location.pathname === "/bookmarks") {
+      handleTabChange("favorites");
+    }
+  }, []);
+
   return (
     <div className="pb-8 bg-black">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav className="flex justify-center space-x-12">
-          <motion.button
-            onClick={() => handleTabChange("all")}
-            className={`pb-3 px-2 border-b-2 font-semibold text-lg transition-colors ${
-              activeTab === "all"
-                ? "border-white text-white"
-                : "border-transparent text-white hover:text-[#666666]"
-            }`}
-            variants={buttonVariants}
-            initial="rest"
-            whileHover="hover"
-            whileTap="tap"
-          >
-            All Zines
-          </motion.button>
-          <motion.button
-            onClick={() => handleTabChange("creators")}
-            className={`pb-3 px-2 border-b-2 font-semibold text-lg transition-colors ${
-              activeTab === "creators"
-                ? "border-white text-white"
-                : "border-transparent text-white hover:text-[#666666]"
-            }`}
-            variants={buttonVariants}
-            initial="rest"
-            whileHover="hover"
-            whileTap="tap"
-          >
-            Creators
-          </motion.button>
+          {/* Browse Tab */}
+          {window.location.pathname === "/bookmarks" ? (
+            <>
+              <motion.button
+                onClick={() => (window.location.href = "/")}
+                className={`px-2 font-normal font-[raleway] mt-[-20px] mb-[-10px] text-[16px] transition-colors ${
+                  activeTab === "all"
+                    ? "border-[1px] border-gray-500 rounded-xl text-white"
+                    : "border-transparent text-white hover:text-[#666666]"
+                }`}
+                variants={buttonVariants}
+                initial="rest"
+                whileHover="hover"
+                whileTap="tap"
+              >
+                Browse
+              </motion.button>
+            </>
+          ) : (
+            <>
+              <motion.button
+                onClick={() => handleTabChange("all")}
+                className={`px-2 font-normal font-[raleway] text-[16px] transition-colors ${
+                  activeTab === "all"
+                    ? "border-[1px] border-gray-500 rounded-xl text-white"
+                    : "border-transparent text-white hover:text-[#666666]"
+                }`}
+                variants={buttonVariants}
+                initial="rest"
+                whileHover="hover"
+                whileTap="tap"
+              >
+                Browse
+              </motion.button>
+            </>
+          )}
+          {/* Creators Tab */}
+          {window.location.pathname === "/bookmarks" ? (
+            ""
+          ) : (
+            <>
+              <motion.button
+                onClick={() => handleTabChange("creators")}
+                className={`px-2  font-normal font-[raleway] text-[16px] transition-colors ${
+                  activeTab === "creators"
+                    ? "border-gray-500 text-white border-[1px] rounded-xl"
+                    : "border-transparent text-white hover:text-[#666666]"
+                }`}
+                variants={buttonVariants}
+                initial="rest"
+                whileHover="hover"
+                whileTap="tap"
+              >
+                Following
+              </motion.button>
+            </>
+          )}
 
           {/* 
           <motion.button
@@ -70,21 +107,24 @@ export function Navigation({
           >
             Popular
           </motion.button> */}
-
-          <motion.button
-            onClick={() => handleTabChange("favorites")}
-            className={`pb-3 px-2 border-b-2 font-semibold text-lg transition-colors ${
-              activeTab === "favorites"
-                ? "border-white text-white"
-                : "border-transparent text-white hover:text-[#666666]"
-            }`}
-            variants={buttonVariants}
-            initial="rest"
-            whileHover="hover"
-            whileTap="tap"
-          >
-            Favorites
-          </motion.button>
+          {/* Favorites Tab */}
+          {window.location.pathname === "/bookmarks" && (
+            <motion.button
+              onClick={() => handleTabChange("favorites")}
+              className={`px-2 font-normal font-[raleway] mt-[-20px] mb-[-10px] text-[16px] transition-colors 
+      ${
+        activeTab === "favorites"
+          ? "border-gray-500 text-white border-[1px] rounded-xl"
+          : "border-gray-500 text-white hover:text-[#666666]"
+      }`}
+              variants={buttonVariants}
+              initial="rest"
+              whileHover="hover"
+              whileTap="tap"
+            >
+              Bookmark
+            </motion.button>
+          )}
         </nav>
       </div>
     </div>

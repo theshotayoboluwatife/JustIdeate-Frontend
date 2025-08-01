@@ -129,7 +129,7 @@ function CreatorsGrid({ creators, isLoading }: CreatorsGridProps) {
   );
 }
 
-export default function Home() {
+export default function Bookmark() {
   const { isAuthenticated, user } = useAuth();
   const currentUser = user;
   const [activeTab, setActiveTab] = useState<
