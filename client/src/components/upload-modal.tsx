@@ -314,6 +314,9 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl mx-4 p-0 overflow-hidden">
+        <h1 className="text-xl bg-[#000] opacity-90 font-semibold text-white">
+          Add Details
+        </h1>
         <div className="flex h-[600px]">
           {/* Left Side - Preview Pane */}
           <div className="flex-1 bg-[#000] opacity-90 relative flex items-center justify-center">
@@ -461,13 +464,7 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
           </div>
 
           {/* Right Side - Form */}
-          <div className="w-80 bg-[#000] opacity-90 p-6 flex flex-col border-l border-l-[#888888] border-dashed">
-            <DialogHeader className="mb-6">
-              <DialogTitle className="text-xl font-semibold text-white">
-                Add Details
-              </DialogTitle>
-            </DialogHeader>
-
+          <div className="w-80 bg-[#000] opacity-90 p-6 flex flex-col">
             <form
               onSubmit={handleSubmit}
               className="flex-1 flex flex-col space-y-4"
@@ -492,7 +489,7 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
               </div> */}
 
               {/* Description Input */}
-              <div className="flex-1 mb-[-45px]">
+              <div className="flex-1 mb-[-70px]">
                 <Label
                   htmlFor="description"
                   className="text-sm font-medium text-white"

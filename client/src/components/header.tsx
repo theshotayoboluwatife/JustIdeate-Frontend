@@ -92,6 +92,22 @@ export function Header({}: HeaderProps) {
               >
                 Create
               </Button>
+
+              {/* Bookmark */}
+              <div className="w-10 h-10 cursor-pointer hover:opacity-80 transition-opacity flex items-center justify-center">
+                <i
+                  className="fas fa-bookmark text-black text-2xl"
+                  onClick={() => (window.location.href = "/bookmarks")}
+                  style={{
+                    textShadow: `
+                    -1px -1px 0 white,
+                    1px -1px 0 white,
+                    -1px  1px 0 white,
+                    1px  1px 0 white
+                  `,
+                  }}
+                ></i>
+              </div>
               {/* Profile Icon */}
               <div
                 className="w-10 h-10 bg-gray-300 rounded-full cursor-pointer hover:opacity-80 transition-opacity flex items-center justify-center"

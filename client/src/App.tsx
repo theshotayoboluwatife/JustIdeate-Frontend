@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import Profile from "@/pages/profile";
 import About from "@/pages/about";
+import Bookmark from "@/pages/bookmarks";
 import AccountSettings from "@/pages/account-settings";
 import NotFound from "@/pages/not-found";
 import AuthCallback from "@/pages/auth-callback";
@@ -30,6 +31,7 @@ function Router() {
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/about" component={About} />
+        <Route path="/bookmarks" component={Bookmark} />
         <Route path="/profile/:id" component={Profile} />
         <Route path="/auth/update-password" component={UpdatePasswordPage} />
         <Route path="/account-settings" component={AccountSettings} />
