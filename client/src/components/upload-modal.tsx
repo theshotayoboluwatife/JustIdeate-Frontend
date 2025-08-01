@@ -333,15 +333,17 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
                 />
                 <label htmlFor="file-upload" className="cursor-pointer">
                   <div className="space-y-4">
-                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
-                      <CloudUpload className="w-8 h-8 text-gray-500" />
+                    <div className="w-16 h-16 flex items-center justify-center mx-auto">
+                      <i class="fas fa-arrow-up-from-bracket text-gray-500 text-5xl"></i>
                     </div>
                     <div>
-                      <h3 className="text-xl text-gray-500 font-semibold mb-2">
-                        Drag photos and videos here
+                      <h3 className="text-xl text-white font-semibold mb-2">
+                        Upload your zine
                       </h3>
-                      <p className="text-gray-500 mb-4">or click to browse</p>
-                      <div className="inline-block text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#1877f2] transition-colors bg-[#364636]">
+                      <p className="text-gray-500 mb-4">
+                        Drag and drop images here, or click to browse
+                      </p>
+                      <div className="inline-block text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 hover:text-gray-700 transition-colors bg-gray-500">
                         Choose Files
                       </div>
                     </div>
