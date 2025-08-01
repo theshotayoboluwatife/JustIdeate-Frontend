@@ -49,15 +49,20 @@ export function MasonryGrid({
   };
   if (isLoading) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-black">
-        <div className="masonry-grid">
-          {Array.from({ length: 6 }).map((_, index) => (
-            <div
-              key={index}
-              className="masonry-item bg-gray-200 rounded-xl animate-pulse"
-              style={{ height: `${200 + Math.random() * 200}px` }}
-            />
-          ))}
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-black">
+        <div className="flex justify-center">
+          <div className="masonry-grid flex flex-wrap gap-4 justify-center max-w-5xl">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <div
+                key={index}
+                className="masonry-item bg-gray-200 rounded-xl animate-pulse"
+                style={{
+                  height: `${200 + Math.random() * 300}px`,
+                  width: "300px",
+                }}
+              />
+            ))}
+          </div>
         </div>
       </div>
     );
@@ -91,14 +96,14 @@ export function MasonryGrid({
               ? isOwnProfile
                 ? "Start sharing your creativity"
                 : "No zines yet"
-              : "No zines found"}
+              : "No Bookmark found"}
           </h3>
           <p className="text-secondary-custom mb-4">
             {isProfilePage
               ? isOwnProfile
                 ? "Upload your first zine and start building your creative portfolio."
                 : ""
-              : "Try adjusting your search or browse different categories to discover amazing zines."}
+              : "You can bookmark by adding images as favourite."}
           </p>
           {isProfilePage && isOwnProfile && onUploadClick && (
             <Button

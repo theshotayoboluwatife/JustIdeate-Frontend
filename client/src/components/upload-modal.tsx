@@ -313,8 +313,11 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl mx-4 p-0 overflow-hidden">
+      <DialogContent className="max-w-4xl mx-4 p-0 overflow-hidden bg-[#000] opacity-90 text-white">
         <div className="flex h-[600px]">
+          <span className="text-xl ml-[20px] mt-[10px] bg-[#000] opacity-90 font-semibold text-white">
+            Add Details
+          </span>
           {/* Left Side - Preview Pane */}
           <div className="flex-1 bg-[#000] opacity-90 relative flex items-center justify-center">
             {files.length === 0 ? (
@@ -330,15 +333,17 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
                 />
                 <label htmlFor="file-upload" className="cursor-pointer">
                   <div className="space-y-4">
-                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
-                      <CloudUpload className="w-8 h-8 text-gray-500" />
+                    <div className="w-16 h-16 flex items-center justify-center mx-auto">
+                      <i className="fas fa-arrow-up-from-bracket text-gray-500 text-5xl"></i>
                     </div>
                     <div>
-                      <h3 className="text-xl text-gray-500 font-semibold mb-2">
-                        Drag photos and videos here
+                      <h3 className="text-xl text-white font-semibold mb-2">
+                        Upload your zine
                       </h3>
-                      <p className="text-gray-500 mb-4">or click to browse</p>
-                      <div className="inline-block text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#1877f2] transition-colors bg-[#364636]">
+                      <p className="text-gray-500 mb-4">
+                        Drag and drop images here, or click to browse
+                      </p>
+                      <div className="inline-block text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 hover:text-gray-700 transition-colors bg-gray-500">
                         Choose Files
                       </div>
                     </div>
@@ -461,13 +466,7 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
           </div>
 
           {/* Right Side - Form */}
-          <div className="w-80 bg-[#000] opacity-90 p-6 flex flex-col border-l border-l-[#888888] border-dashed">
-            <DialogHeader className="mb-6">
-              <DialogTitle className="text-xl font-semibold text-white">
-                Add Details
-              </DialogTitle>
-            </DialogHeader>
-
+          <div className="w-80 bg-[#000] opacity-90 p-6 flex flex-col">
             <form
               onSubmit={handleSubmit}
               className="flex-1 flex flex-col space-y-4"
@@ -492,7 +491,7 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
               </div> */}
 
               {/* Description Input */}
-              <div className="flex-1 mb-[-45px]">
+              <div className="flex-1 mb-[-70px]">
                 <Label
                   htmlFor="description"
                   className="text-sm font-medium text-white"
@@ -545,22 +544,22 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
                 <Button
                   type="button"
                   variant="outline"
-                  className="flex-1"
+                  className="flex-1 bg-[#000] opacity-90"
                   onClick={handleClose}
                   disabled={isUploading}
                 >
-                  Cancel
+                  Back
                 </Button>
                 <Button
                   type="submit"
-                  className="flex-1 bg-[#2b3012] hover:bg-[#1e2009] text-white"
+                  className="flex-1 bg-[#fff] hover:bg-white text-black"
                   disabled={
                     isUploading ||
                     createZineMutation.isPending ||
                     files.length === 0
                   }
                 >
-                  {isUploading ? "Sharing..." : "Share"}
+                  {isUploading ? "Publishing..." : "Publish"}
                 </Button>
               </div>
             </form>
