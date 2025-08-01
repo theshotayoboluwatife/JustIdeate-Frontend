@@ -313,11 +313,11 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl mx-4 p-0 overflow-hidden">
-        <h1 className="text-xl bg-[#000] opacity-90 font-semibold text-white">
-          Add Details
-        </h1>
+      <DialogContent className="max-w-4xl mx-4 p-0 overflow-hidden bg-[#000] opacity-90 text-white">
         <div className="flex h-[600px]">
+          <span className="text-xl ml-[20px] mt-[10px] bg-[#000] opacity-90 font-semibold text-white">
+            Add Details
+          </span>
           {/* Left Side - Preview Pane */}
           <div className="flex-1 bg-[#000] opacity-90 relative flex items-center justify-center">
             {files.length === 0 ? (
@@ -542,22 +542,22 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
                 <Button
                   type="button"
                   variant="outline"
-                  className="flex-1"
+                  className="flex-1 bg-[#000] opacity-90"
                   onClick={handleClose}
                   disabled={isUploading}
                 >
-                  Cancel
+                  Back
                 </Button>
                 <Button
                   type="submit"
-                  className="flex-1 bg-[#2b3012] hover:bg-[#1e2009] text-white"
+                  className="flex-1 bg-[#fff] hover:bg-white text-black"
                   disabled={
                     isUploading ||
                     createZineMutation.isPending ||
                     files.length === 0
                   }
                 >
-                  {isUploading ? "Sharing..." : "Share"}
+                  {isUploading ? "Publishing..." : "Publish"}
                 </Button>
               </div>
             </form>
