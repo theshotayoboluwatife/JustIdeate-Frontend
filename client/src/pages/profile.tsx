@@ -196,7 +196,7 @@ export default function Profile() {
     isOwnProfile = currentUser?.id === id;
   } else {
     // Default to current user's profile
-    profileId = currentUser?.id || "1";
+    profileId = currentUser?.id || "xxxx";
     isOwnProfile = !!currentUser;
   }
 
