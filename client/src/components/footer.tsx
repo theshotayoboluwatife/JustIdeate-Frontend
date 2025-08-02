@@ -3,7 +3,7 @@ import logoPath from "@assets/justideate logo_1750798684679.png";
 
 export function Footer() {
   return (
-    <footer className="bg-black text-white py-8">
+    <footer className="bg-black text-white py-6 mt-8 mb-0 pb-1">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:justify-between items-start space-y-6 md:space-y-0">
           {/* Left side - Logo and tagline */}
