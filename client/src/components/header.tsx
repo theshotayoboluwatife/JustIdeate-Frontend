@@ -96,7 +96,7 @@ export function Header({}: HeaderProps) {
               {/* Bookmark */}
               <div className="w-10 h-10 cursor-pointer hover:opacity-80 transition-opacity flex items-center justify-center">
                 <i
-                  className="fas fa-bookmark text-black text-2xl"
+                  className="fas fa-bookmark text-black text-xl"
                   onClick={() => (window.location.href = "/bookmarks")}
                   style={{
                     textShadow: `
