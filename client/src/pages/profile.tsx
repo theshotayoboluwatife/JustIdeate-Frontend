@@ -495,182 +495,203 @@ export default function Profile() {
       <Header onSearch={() => {}} searchQuery="" />
 
       {/* Profile Header */}
-      <div className="bg-black">
+      <div className="bg-black flex items-center justify-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="text-center relative">
-            {/* Profile Photo */}
-            <div
-              className={`w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center relative ${
-                isOwnProfile ? "group cursor-pointer" : ""
-              }`}
-            >
-              {user.profileImageUrl ? (
-                <img
-                  src={user.profileImageUrl}
-                  alt={user.username}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="profile_icon w-full h-full bg-gray-200 flex items-center justify-center cursor-pointer">
-                  <svg
-                    className="w-16 h-16 text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                  </svg>
-                </div>
-              )}
-
-              {/* Hover overlay for profile picture upload */}
-              {isOwnProfile && (
-                <>
-                  <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center rounded-full">
-                    <div className="text-white text-center">
-                      <svg
-                        className="w-8 h-8 mx-auto mb-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
-                        />
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
-                      </svg>
-                      <span className="text-xs font-medium">Change Photo</span>
-                    </div>
+          <div className="relative flex flex-col lg:flex-row items-center lg:items-start lg:space-x-8">
+            {/* Profile Photo with Hover Bio */}
+            <div className="relative group w-32 h-32 mb-6">
+              {/* Hover Bio Tooltip */}
+              {user.bio && user.websiteUrl && (
+                <a
+                  href={user.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute ml-[100px] mt-[-30px] xl:ml-[-150px] xl:mt-[45px] lg:ml-[-140px] lg:mt-[45px] md:ml-[-100px] md:mt-[45px] -top-4 -left-44 z-10 hidden group-hover:block max-w-xs p-3 rounded-3xl bg-white/10 backdrop-blur-md border border-white/30 text-white text-sm shadow-lg transition-opacity duration-300"
+                >
+                  <div className="relative">
+                    <span className="block break-words whitespace-pre-wrap">
+                      {user.bio}
+                    </span>
+                    <div className="absolute -right-2 bottom-2 w-3 h-3 bg-white/10 border-t border-l border-white/30 rotate-45 backdrop-blur-md"></div>
                   </div>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleProfileImageChange}
-                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                    disabled={uploadProfilePicMutation.isPending}
-                  />
-                </>
+                </a>
               )}
+
+              {/* Actual Profile Image */}
+              <div
+                className={`w-40 h-40 rounded-full overflow-hidden border border-[#5d5d5d] bg-gray-200 flex items-center justify-center relative ml-[-10px] xl:ml-[-40px] lg:ml-[-50px] ${
+                  isOwnProfile ? "group cursor-pointer" : ""
+                }`}
+              >
+                {user.profileImageUrl ? (
+                  <img
+                    src={user.profileImageUrl}
+                    alt={user.username}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="profile_icon w-40 h-40 bg-gray-200 flex items-center justify-center cursor-pointer">
+                    <svg
+                      className="w-16 h-16 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                    </svg>
+                  </div>
+                )}
+
+                {/* Hover Upload Overlay */}
+                {isOwnProfile && (
+                  <>
+                    <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center rounded-full">
+                      <div className="text-white text-center">
+                        <svg
+                          className="w-8 h-8 mx-auto mb-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+                          />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+                          />
+                        </svg>
+                        <span className="text-xs font-medium">
+                          Change Photo
+                        </span>
+                      </div>
+                    </div>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleProfileImageChange}
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                      disabled={uploadProfilePicMutation.isPending}
+                    />
+                  </>
+                )}
+              </div>
             </div>
 
-            {/* Settings Menu - Only for own profile */}
-            {isOwnProfile && (
-              <div className="absolute top-4 right-4">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                      <MoreVertical className="h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem
-                      onClick={() =>
-                        (window.location.href = "/account-settings")
-                      }
-                    >
-                      <Settings className="mr-2 h-4 w-4" />
-                      Edit Profile
-                    </DropdownMenuItem>
-                    <DropdownMenuItem
-                      onClick={async () => {
-                        try {
-                          await logout();
-                          toast({
-                            title: "Logged out successfully",
-                          });
-                          window.location.href = "/";
-                        } catch (error) {
-                          console.error("Logout failed:", error);
-                          toast({
-                            title: "Error",
-                            description: "Failed to log out",
-                            variant: "destructive",
-                          });
+            {/* Right Side Content */}
+            <div className="flex-1 w-full lg:w-auto">
+              {/* Settings menu */}
+              {isOwnProfile && (
+                <div className="absolute top-4 right-4">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                        <MoreVertical className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem
+                        onClick={() =>
+                          (window.location.href = "/account-settings")
                         }
-                      }}
-                      className="text-red-600"
-                    >
-                      <svg
-                        className="mr-2 h-4 w-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                        />
-                      </svg>
-                      Logout
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-            )}
-
-            {/* Username */}
-            <div className="mb-4">
-              {isEditingName && isOwnProfile ? (
-                <div className="flex items-center justify-center space-x-2">
-                  <Input
-                    value={editedName}
-                    onChange={(e) => setEditedName(e.target.value)}
-                    className="text-3xl font-bold text-center max-w-md"
-                    onKeyPress={(e) => e.key === "Enter" && handleSaveName()}
-                  />
-                  <Button
-                    size="sm"
-                    onClick={handleSaveName}
-                    disabled={updateProfileMutation.isPending}
-                  >
-                    <Check className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={handleCancelEdit}
-                  >
-                    <X className="w-4 h-4" />
-                  </Button>
+                        <Settings className="mr-2 h-4 w-4" />
+                        Edit Profile
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={async () => {
+                          try {
+                            await logout();
+                            toast({ title: "Logged out successfully" });
+                            window.location.href = "/";
+                          } catch (error) {
+                            console.error("Logout failed:", error);
+                            toast({
+                              title: "Error",
+                              description: "Failed to log out",
+                              variant: "destructive",
+                            });
+                          }
+                        }}
+                        className="text-red-600"
+                      >
+                        <svg
+                          className="mr-2 h-4 w-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                          />
+                        </svg>
+                        Logout
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
-              ) : (
-                <>
-                  <h1 className="text-3xl font-bold text-white mt-[-20px]">
-                    {user.username}
-                  </h1>
-                  {/* @username */}
-                  <p className="text-gray-500 text-sm mt-1 text-center">
-                    @{user.username}
-                  </p>
-                </>
               )}
-            </div>
 
-            {/* Followers Count and Action Buttons */}
-            <div className="mb-6 flex flex-col items-center space-y-4">
-              <div className="text-sm text-secondary-custom">
-                {followerCount} {followerCount === 1 ? "follower" : "followers"}
+              {/* Username */}
+              <div className="mb-4 text-center lg:text-left">
+                {isEditingName && isOwnProfile ? (
+                  <div className="flex items-center justify-center lg:justify-start space-x-2">
+                    <Input
+                      value={editedName}
+                      onChange={(e) => setEditedName(e.target.value)}
+                      className="text-3xl font-bold max-w-md"
+                      onKeyPress={(e) => e.key === "Enter" && handleSaveName()}
+                    />
+                    <Button
+                      size="sm"
+                      onClick={handleSaveName}
+                      disabled={updateProfileMutation.isPending}
+                    >
+                      <Check className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={handleCancelEdit}
+                    >
+                      <X className="w-4 h-4" />
+                    </Button>
+                  </div>
+                ) : (
+                  <>
+                    <h1 className="text-3xl font-normal capitalize text-white font-[raleway] mb-[9px] mt-[20px] xl:mt-0 lg:mt-0">
+                      {user.username}
+                    </h1>
+                    <p className="text-gray-500 text-sm mt-1 font-[raleway] mb-[-7px]">
+                      @{user.username}
+                    </p>
+                  </>
+                )}
               </div>
 
-              {/* Follow Button and Email Icon for other users */}
-              {!isOwnProfile && currentUser && (
-                <div className="flex items-center space-x-2">
+              {/* Followers and Buttons */}
+              <div className="mb-6 flex flex-col items-center lg:items-start space-y-4 font-[raleway]">
+                <div className="text-sm text-secondary-custom text-white font-[raleway] uppercase">
+                  {followerCount}{" "}
+                  {followerCount === 1 ? "follower" : "followers"}
+                </div>
+
+                {/* Always Show Follow Button */}
+                <div className="flex items-center space-x-2 font-[raleway]">
                   <Button
                     onClick={() => toggleFollowMutation.mutate()}
-                    disabled={!currentUser || toggleFollowMutation.isPending}
+                    disabled={toggleFollowMutation.isPending}
                     className={`${
                       isFollowing
-                        ? "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                        : "bg-black text-white hover:bg-gray-800"
+                        ? "bg-[#1e1e1e] border border-[#5d5d5d] text-white hover:bg-[#5d5d5d] font-[raleway] text-[13px]"
+                        : "bg-[#1e1e1e] border border-[#5d5d5d] text-white hover:bg-[#5d5d5d] font-[raleway] text-[13px]"
                     } transition-colors`}
                   >
                     {toggleFollowMutation.isPending
@@ -690,89 +711,45 @@ export default function Profile() {
                     </a>
                   )}
                 </div>
-              )}
-            </div>
+              </div>
 
-            {/* Bio */}
-            <div className="mb-6">
-              {isEditingBio && isOwnProfile ? (
-                <div className="flex flex-col items-center space-y-4 max-w-2xl mx-auto px-4">
-                  <Textarea
-                    value={editedBio}
-                    onChange={(e) => setEditedBio(e.target.value)}
-                    className="text-lg text-center resize-none w-full"
-                    rows={3}
-                    placeholder="Tell us about yourself..."
-                  />
-                  <input
-                    type="url"
-                    value={editedWebsiteUrl}
-                    onChange={(e) => setEditedWebsiteUrl(e.target.value)}
-                    placeholder="Website or portfolio URL (optional)"
-                    className="w-full px-4 py-2 text-center border border-gray-300 rounded-lg focus:outline-none focus:border-[#2b3012] focus:ring-1 focus:ring-[#2b3012]"
-                  />
-                  <div className="flex space-x-2">
-                    <Button
-                      size="sm"
-                      onClick={handleSaveBio}
-                      disabled={updateProfileMutation.isPending}
-                    >
-                      <Check className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={handleCancelEdit}
-                    >
-                      <X className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </div>
-              ) : (
-                <div className="max-w-2xl mx-auto px-4 relative">
-                  <div
-                    className={`text-center ${
-                      isOwnProfile ? "group cursor-pointer" : ""
-                    }`}
-                    onClick={isOwnProfile ? handleEditBio : undefined}
-                  >
-                    <div className="about_profile">
-                      {user.bio ? (
-                        <p className="text-secondary-custom text-lg leading-relaxed break-words whitespace-pre-wrap text-center">
-                          {user.bio}
-                        </p>
-                      ) : isOwnProfile ? (
-                        <p className="text-gray-400 text-lg leading-relaxed text-center">
-                          Add a bio to tell people about yourself
-                        </p>
-                      ) : null}
-                    </div>
-                    {/* Website URL */}
-                    {user.websiteUrl && (
-                      <div className="text-center mt-4">
-                        <a
-                          href={user.websiteUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-[#2b3012] hover:underline text-sm"
-                        >
-                          {user.websiteUrl.length > 20
-                            ? `${user.websiteUrl.substring(0, 20)}...`
-                            : user.websiteUrl}
-                        </a>
-                      </div>
-                    )}
-                  </div>
-
-                  {isOwnProfile && (
-                    <Edit2
-                      className="w-4 h-4 absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
-                      style={{ transform: "translate(calc(50% + 24px), 8px)" }}
-                      onClick={handleEditBio}
+              {/* Bio section removed */}
+              <div className="mb-6">
+                {isEditingBio && isOwnProfile && (
+                  <div className="flex flex-col items-center lg:items-start space-y-4 max-w-2xl mx-auto px-4">
+                    <Textarea
+                      value={editedBio}
+                      onChange={(e) => setEditedBio(e.target.value)}
+                      className="text-lg resize-none w-full text-center lg:text-left"
+                      rows={3}
+                      placeholder="Tell us about yourself..."
                     />
-                  )}
-                </div>
-              )}
+                    <input
+                      type="url"
+                      value={editedWebsiteUrl}
+                      onChange={(e) => setEditedWebsiteUrl(e.target.value)}
+                      placeholder="Website or portfolio URL (optional)"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#2b3012] focus:ring-1 focus:ring-[#2b3012]"
+                    />
+                    <div className="flex space-x-2">
+                      <Button
+                        size="sm"
+                        onClick={handleSaveBio}
+                        disabled={updateProfileMutation.isPending}
+                      >
+                        <Check className="w-4 h-4" />
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={handleCancelEdit}
+                      >
+                        <X className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
