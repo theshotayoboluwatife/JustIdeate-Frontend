@@ -187,23 +187,23 @@ export default function Profile() {
   const [editedBio, setEditedBio] = useState("");
   const [editedWebsiteUrl, setEditedWebsiteUrl] = useState("");
 
-  // Handle both UUID and numeric IDs
-  let profileId: string;
-  let isOwnProfile = false;
 
-  if (id) {
-    profileId = id;
-    isOwnProfile = currentUser?.id === id;
+let profileId: string;
+let isOwnProfile = false; // Default to false
+
+if (id) {
+  if (id === "own-user") {
+    profileId = "mock-user-123"; // Use mock user for demo
+    isOwnProfile = true; // Always true for this specific route
   } else {
-    // Default to current user's profile
-    profileId = currentUser?.id || "xxxx";
-    isOwnProfile = !!currentUser;
+    profileId = id;
+    isOwnProfile = false; // Always false for other user IDs
   }
+} else {
+  profileId = currentUser?.id || "mock-user-123";
+  isOwnProfile = !!currentUser; // True only if user is logged in
+}
 
-  // Additional check: if we have a currentUser and the profileId matches, it's their own profile
-  if (currentUser && currentUser.id === profileId) {
-    isOwnProfile = true;
-  }
 
   console.log("Profile component:", {
     id,
@@ -501,21 +501,21 @@ export default function Profile() {
             {/* Profile Photo with Hover Bio */}
             <div className="relative group w-32 h-32 mb-6">
               {/* Hover Bio Tooltip */}
-              {user.bio && user.websiteUrl && (
-                <a
-                  href={user.websiteUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute ml-[100px] mt-[-30px] xl:ml-[-150px] xl:mt-[45px] lg:ml-[-140px] lg:mt-[45px] md:ml-[-100px] md:mt-[45px] -top-4 -left-44 z-10 hidden group-hover:block max-w-xs p-3 rounded-3xl bg-white/10 backdrop-blur-md border border-white/30 text-white text-sm shadow-lg transition-opacity duration-300"
-                >
-                  <div className="relative">
-                    <span className="block break-words whitespace-pre-wrap">
-                      {user.bio}
-                    </span>
-                    <div className="absolute -right-2 bottom-2 w-3 h-3 bg-white/10 border-t border-l border-white/30 rotate-45 backdrop-blur-md"></div>
-                  </div>
-                </a>
-              )}
+            {user.bio && user.websiteUrl && (
+                      <a
+                        href={user.websiteUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute ml-[100px] mt-[-30px] xl:ml-[-150px] xl:mt-[45px] lg:ml-[-140px] lg:mt-[45px] md:ml-[-100px] md:mt-[45px] -top-4 -left-44 z-10 hidden group-hover:block max-w-xs p-3 rounded-3xl bg-white/10 backdrop-blur-md border border-white/30 text-white text-sm shadow-lg transition-opacity duration-300"
+                      >
+                        <div className="relative">
+                          <span className="block break-words whitespace-pre-wrap">
+                            {user.bio}
+                          </span>
+                          <div className="absolute -right-2 bottom-2 w-3 h-3 bg-white/10 border-t border-l border-white/30 rotate-45 backdrop-blur-md"></div>
+                        </div>
+                      </a>
+                    )}
 
               {/* Actual Profile Image */}
               <div

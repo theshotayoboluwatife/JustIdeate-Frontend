@@ -150,32 +150,40 @@ const simulateDelay = (ms: number = DEMO_DELAY) =>
 // Mock API responses
 export const mockApi = {
   // User endpoints
+  // Updated getUser function in your mock API:
+
   async getUser(userId: string): Promise<{ user: User }> {
     console.log("🔌 Mock API: Getting user", userId);
-    
+
     // Simulate network delay
     await simulateDelay(1000); // Shorter delay for profile loading
-    
-    // Return mock user for any ID (so profile pages work)
-    const user = MOCK_USERS[userId] || {
-      ...MOCK_USERS["mock-user-123"],
-      id: userId,
-      username: `user_${userId.slice(0, 8)}`
-    };
-    
-    return { user };
+
+    // Handle special case for "own-user" or any unknown user ID
+    if (userId === "own-user" || !MOCK_USERS[userId]) {
+      // Return the default mock user for own profile or unknown IDs
+      const user = {
+        ...MOCK_USERS["mock-user-123"],
+        id: userId === "own-user" ? "mock-user-123" : userId,
+        username: userId === "own-user" ? "demouser" : `user_${userId.slice(0, 8)}`
+      };
+      return { user };
+    }
+
+    // Return existing mock user
+    return { user: MOCK_USERS[userId] };
   },
 
-  // Zines endpoints
+  // Also update getUserZines to handle this:
   async getUserZines(userId: string): Promise<{ zines: ZineWithCreator[] }> {
     console.log("🔌 Mock API: Getting user zines", userId);
-    
+
     // Simulate network delay
     await simulateDelay();
-    
-    // Return mock zines for the user
-    return { 
-      zines: MOCK_ZINES.filter(zine => zine.userId === userId || userId === "mock-user-123") 
+
+    // Return mock zines for the user - handle "own-user" case
+    const targetUserId = userId === "own-user" ? "mock-user-123" : userId;
+    return {
+      zines: MOCK_ZINES.filter(zine => zine.userId === targetUserId || targetUserId === "mock-user-123")
     };
   },
 
