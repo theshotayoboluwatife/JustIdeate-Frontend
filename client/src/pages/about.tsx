@@ -36,9 +36,11 @@ export default function About() {
 
             <div className="grid md:grid-cols-12 gap-8 md:gap-12">
               <div className="md:col-span-8 space-y-6 text-lg font-inter leading-relaxed text-[#000000]">
-                <p className="font-semibold text-xl text-[#000000]">JustIdeate is a discovery platform for you to post your zines and discover others' creations—in a slower, more intentional space, without the noise of algorithms or social media. </p>
-
-                
+                <p className="font-semibold text-xl text-[#000000]">
+                  JustIdeate is a discovery platform for you to post your zines
+                  and discover others' creations—in a slower, more intentional
+                  space, without the noise of algorithms or social media.{" "}
+                </p>
               </div>
             </div>
           </article>
@@ -83,10 +85,16 @@ export default function About() {
       {/* Call to Action Section */}
       <section className="py-20 lg:py-24 bg-[#364636] pt-[75px] pb-[75px]">
         <div className="max-w-3xl mx-auto text-center px-6">
-          <h2 className="text-4xl md:text-5xl font-raleway font-bold text-white mb-8 leading-tight">Got Feedback?</h2>
+          <h2 className="text-4xl md:text-5xl font-raleway font-bold text-white mb-8 leading-tight">
+            Got Feedback?
+          </h2>
 
           <div className="space-y-6 text-lg text-gray-200 font-inter leading-relaxed mb-8">
-            <p>JustIdeate is in its beta, and we'd love to hear your thoughts on how we can make this platform better serve artists, creatives, and zine culture. </p>
+            <p>
+              JustIdeate is in its beta, and we'd love to hear your thoughts on
+              how we can make this platform better serve artists, creatives, and
+              zine culture.{" "}
+            </p>
 
             <p className="text-gray-300 font-semibold">
               Short, long, poetic, or unhinged—all voices welcome.
@@ -98,7 +106,9 @@ export default function About() {
             onClick={() =>
               window.open("https://app.youform.com/forms/xkkim3ka", "_blank")
             }
-          >+ Share My Thoughts</button>
+          >
+            + Share My Thoughts
+          </button>
         </div>
       </section>
       <Footer />
