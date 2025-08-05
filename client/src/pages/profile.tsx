@@ -139,7 +139,7 @@ function CreatorsGrid({ creators, isLoading }: CreatorsGridProps) {
               d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
             />
           </svg>
-          <h3 className="mt-2 text-sm font-medium text-gray-900">
+          <h3 className="mt-2 text-sm font-medium text-gray-400">
             No creators found
           </h3>
         </div>
@@ -187,23 +187,21 @@ export default function Profile() {
   const [editedBio, setEditedBio] = useState("");
   const [editedWebsiteUrl, setEditedWebsiteUrl] = useState("");
 
+  let profileId: string;
+  let isOwnProfile = false; // Default to false
 
-let profileId: string;
-let isOwnProfile = false; // Default to false
-
-if (id) {
-  if (id === "own-user") {
-    profileId = "mock-user-123"; // Use mock user for demo
-    isOwnProfile = true; // Always true for this specific route
+  if (id) {
+    if (id === "own-user") {
+      profileId = "mock-user-123"; // Use mock user for demo
+      isOwnProfile = true; // Always true for this specific route
+    } else {
+      profileId = id;
+      isOwnProfile = false; // Always false for other user IDs
+    }
   } else {
-    profileId = id;
-    isOwnProfile = false; // Always false for other user IDs
+    profileId = currentUser?.id || "mock-user-123";
+    isOwnProfile = !!currentUser; // True only if user is logged in
   }
-} else {
-  profileId = currentUser?.id || "mock-user-123";
-  isOwnProfile = !!currentUser; // True only if user is logged in
-}
-
 
   console.log("Profile component:", {
     id,
@@ -501,21 +499,21 @@ if (id) {
             {/* Profile Photo with Hover Bio */}
             <div className="relative group w-32 h-32 mb-6">
               {/* Hover Bio Tooltip */}
-            {user.bio && user.websiteUrl && (
-                      <a
-                        href={user.websiteUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="absolute ml-[100px] mt-[-30px] xl:ml-[-150px] xl:mt-[45px] lg:ml-[-140px] lg:mt-[45px] md:ml-[-100px] md:mt-[45px] -top-4 -left-44 z-10 hidden group-hover:block max-w-xs p-3 rounded-3xl bg-white/10 backdrop-blur-md border border-white/30 text-white text-sm shadow-lg transition-opacity duration-300"
-                      >
-                        <div className="relative">
-                          <span className="block break-words whitespace-pre-wrap">
-                            {user.bio}
-                          </span>
-                          <div className="absolute -right-2 bottom-2 w-3 h-3 bg-white/10 border-t border-l border-white/30 rotate-45 backdrop-blur-md"></div>
-                        </div>
-                      </a>
-                    )}
+              {user.bio && user.websiteUrl && (
+                <a
+                  href={user.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute ml-[100px] mt-[-30px] xl:ml-[-150px] xl:mt-[45px] lg:ml-[-140px] lg:mt-[45px] md:ml-[-100px] md:mt-[45px] -top-4 -left-44 z-10 hidden group-hover:block max-w-xs p-3 rounded-3xl bg-white/10 backdrop-blur-md border border-white/30 text-white text-sm shadow-lg transition-opacity duration-300"
+                >
+                  <div className="relative">
+                    <span className="block break-words whitespace-pre-wrap">
+                      {user.bio}
+                    </span>
+                    <div className="absolute -right-2 bottom-2 w-3 h-3 bg-white/10 border-t border-l border-white/30 rotate-45 backdrop-blur-md"></div>
+                  </div>
+                </a>
+              )}
 
               {/* Actual Profile Image */}
               <div
@@ -586,10 +584,10 @@ if (id) {
             <div className="flex-1 w-full lg:w-auto">
               {/* Settings menu */}
               {isOwnProfile && (
-                <div className="absolute top-4 right-4">
+                <div className="absolute top-1 right-[-40px]">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                      <Button variant="ghost" size="xl" className="h-8 w-8 p-0">
                         <MoreVertical className="h-4 w-4" />
                       </Button>
                     </DropdownMenuTrigger>
@@ -684,22 +682,36 @@ if (id) {
                 </div>
 
                 {/* Always Show Follow Button */}
+
                 <div className="flex items-center space-x-2 font-[raleway]">
-                  <Button
-                    onClick={() => toggleFollowMutation.mutate()}
-                    disabled={toggleFollowMutation.isPending}
-                    className={`${
-                      isFollowing
-                        ? "bg-[#1e1e1e] border border-[#5d5d5d] text-white hover:bg-[#5d5d5d] font-[raleway] text-[13px]"
-                        : "bg-[#1e1e1e] border border-[#5d5d5d] text-white hover:bg-[#5d5d5d] font-[raleway] text-[13px]"
-                    } transition-colors`}
-                  >
-                    {toggleFollowMutation.isPending
-                      ? "Loading..."
-                      : isFollowing
-                      ? "Following"
-                      : "Follow"}
-                  </Button>
+                  {window.location.pathname === "/profile/own-user" ? (
+                    <Button
+                      onClick={() =>
+                        (window.location.href = "/account-settings")
+                      }
+                      className="bg-[#1e1e1e] border border-[#5d5d5d] text-white hover:bg-[#5d5d5d] font-[raleway] text-[13px]"
+                    >
+                      Edit Profile
+                    </Button>
+                  ) : (
+                    <>
+                      <Button
+                        onClick={() => toggleFollowMutation.mutate()}
+                        disabled={toggleFollowMutation.isPending}
+                        className={`${
+                          isFollowing
+                            ? "bg-[#1e1e1e] border border-[#5d5d5d] text-white hover:bg-[#5d5d5d] font-[raleway] text-[13px]"
+                            : "bg-[#1e1e1e] border border-[#5d5d5d] text-white hover:bg-[#5d5d5d] font-[raleway] text-[13px]"
+                        } transition-colors`}
+                      >
+                        {toggleFollowMutation.isPending
+                          ? "Loading..."
+                          : isFollowing
+                          ? "Following"
+                          : "Follow"}
+                      </Button>
+                    </>
+                  )}
 
                   {showPublicEmail && (
                     <a
@@ -756,18 +768,18 @@ if (id) {
       </div>
 
       {/* Profile Content */}
-      <div className="bg-black">
+      <div className="bg-black text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Tab Navigation - Only show for own profile */}
           {isOwnProfile && (
-            <div className="mb-8 border-b border-gray-200">
+            <div className="mb-8">
               <nav className="-mb-px flex justify-center space-x-12">
                 <button
                   onClick={() => setActiveTab("zines")}
-                  className={`pb-3 px-2 border-b-2 font-semibold text-lg transition-colors ${
+                  className={`px-2  font-normal font-[raleway] text-[16px] transition-colors ${
                     activeTab === "zines"
-                      ? "border-[#364636] text-[#364636]"
-                      : "border-transparent text-black hover:text-gray-700"
+                      ? "border-gray-500 text-white border-[1px] rounded-xl"
+                      : "border-transparent text-white hover:text-[#666666]"
                   }`}
                 >
                   {/* <Grid className="w-4 h-4 mr-2 inline" /> */}
@@ -788,10 +800,10 @@ if (id) {
  */}
                 <button
                   onClick={() => setActiveTab("favorites")}
-                  className={`pb-3 px-2 border-b-2 font-semibold text-lg transition-colors ${
+                  className={`px-2  font-normal font-[raleway] text-[16px] transition-colors ${
                     activeTab === "favorites"
-                      ? "border-[#364636] text-[#364636]"
-                      : "border-transparent text-black hover:text-gray-700"
+                      ? "border-gray-500 text-white border-[1px] rounded-xl"
+                      : "border-transparent text-white hover:text-[#666666]"
                   }`}
                 >
                   {/* <Star className="w-4 h-4 mr-2 inline" /> */}
@@ -807,9 +819,7 @@ if (id) {
               {/* Only show section header for own profile */}
               {isOwnProfile && (
                 <div className="mb-8">
-                  <h2 className="text-2xl font-bold text-primary-custom mb-2">
-                    Your Zines
-                  </h2>
+                  <h2 className="text-2xl font-bold text-black mb-2">.</h2>
                   {zines.length === 0 && !zinesLoading && (
                     <p className="text-secondary-custom">
                       You haven't uploaded any zines yet.
@@ -832,9 +842,7 @@ if (id) {
 
           {activeTab === "favorites" && isOwnProfile && (
             <>
-              <h2 className="text-2xl font-bold text-primary-custom mb-4">
-                Your Favorite Creators
-              </h2>
+              <h2 className="text-2xl font-bold text-black mb-4">.</h2>
               {favoriteCreatorsLoading ? (
                 <CreatorsGrid creators={[]} isLoading={true} />
               ) : (
