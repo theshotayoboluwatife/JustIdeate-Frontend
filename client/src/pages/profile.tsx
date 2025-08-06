@@ -584,7 +584,7 @@ export default function Profile() {
             <div className="flex-1 w-full lg:w-auto">
               {/* Settings menu */}
               {isOwnProfile && (
-                <div className="absolute top-1 right-[-40px]">
+                <div className="absolute top-1 right-[-20px] lg:right-[-40px] xl:right-[-40px]">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button variant="ghost" size="xl" className="h-8 w-8 p-0">
@@ -598,7 +598,7 @@ export default function Profile() {
                         }
                       >
                         <Settings className="mr-2 h-4 w-4" />
-                        Edit Profile
+                        Settings
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         onClick={async () => {
@@ -685,14 +685,16 @@ export default function Profile() {
 
                 <div className="flex items-center space-x-2 font-[raleway]">
                   {window.location.pathname === "/profile/own-user" ? (
-                    <Button
-                      onClick={() =>
-                        (window.location.href = "/account-settings")
-                      }
-                      className="bg-[#1e1e1e] border border-[#5d5d5d] text-white hover:bg-[#5d5d5d] font-[raleway] text-[13px]"
-                    >
-                      Edit Profile
-                    </Button>
+                    <>
+                      {!isEditingBio && (
+                        <Button
+                          onClick={() => setIsEditingBio(true)}
+                          className="bg-[#1e1e1e] border border-[#5d5d5d] text-white hover:bg-[#5d5d5d] font-[raleway] text-[13px]"
+                        >
+                          Edit Profile
+                        </Button>
+                      )}
+                    </>
                   ) : (
                     <>
                       <Button
@@ -726,13 +728,13 @@ export default function Profile() {
               </div>
 
               {/* Bio section removed */}
-              <div className="mb-6">
+              <div className="mb-6 lg:ml-[-15px] xl:ml-[-15px] mt-[-30px]">
                 {isEditingBio && isOwnProfile && (
                   <div className="flex flex-col items-center lg:items-start space-y-4 max-w-2xl mx-auto px-4">
                     <Textarea
                       value={editedBio}
                       onChange={(e) => setEditedBio(e.target.value)}
-                      className="text-lg resize-none w-full text-center lg:text-left"
+                      className="mt-1 h-20 border-r border-l border-t border-b border-[#7c7c7c] rounded-none resize-none text-white focus:border-[#2b3012] bg-transparent focus:ring-[#2b3012]"
                       rows={3}
                       placeholder="Tell us about yourself..."
                     />
@@ -741,10 +743,11 @@ export default function Profile() {
                       value={editedWebsiteUrl}
                       onChange={(e) => setEditedWebsiteUrl(e.target.value)}
                       placeholder="Website or portfolio URL (optional)"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#2b3012] focus:ring-1 focus:ring-[#2b3012]"
+                      className="mt-1 w-[100%] h-10 pr-[5px] placeholder:text-[13px] pl-[10px] text-white bg-transparent border-r border-l border-t border-b border-[#7c7c7c] resize-none focus:border-[#2b3012] focus:ring-[#2b3012]"
                     />
                     <div className="flex space-x-2">
                       <Button
+                        className="bg-[#d1ead4] border border-[#5d5d5d] text-black hover:text-white hover:bg-[#5d5d5d] font-[raleway] text-[13px]"
                         size="sm"
                         onClick={handleSaveBio}
                         disabled={updateProfileMutation.isPending}
@@ -752,6 +755,7 @@ export default function Profile() {
                         <Check className="w-4 h-4" />
                       </Button>
                       <Button
+                        className="bg-[#d8aeae] border border-[#5d5d5d] text-black hover:text-white hover:bg-[#5d5d5d] font-[raleway] text-[13px]"
                         size="sm"
                         variant="outline"
                         onClick={handleCancelEdit}
