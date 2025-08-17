@@ -50,8 +50,11 @@ export function HeroSection({ onSearch, searchQuery }: HeroSectionProps) {
               <p className="mt-[-70px] text-black text-[2px]">.</p>
             ) : (
               <>
-                a platform <span className="text-[#fcfcfcbd]">for</span>
-                <span className="text-[#c4cfc4bd]"> zines.</span>
+                {" "}
+                a platform f
+                <span className="bg-gradient-to-r from-white to-[#A0A0A0] bg-clip-text text-transparent">
+                  or zines.
+                </span>
               </>
             )}
           </h1>

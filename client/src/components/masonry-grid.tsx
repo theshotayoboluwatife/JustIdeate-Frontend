@@ -96,14 +96,14 @@ export function MasonryGrid({
               ? isOwnProfile
                 ? "Start sharing your creativity"
                 : "No zines yet"
-              : "No Bookmark found"}
+              : "Try saving some posts"}
           </h3>
           <p className="text-secondary-custom mb-4">
             {isProfilePage
               ? isOwnProfile
                 ? "Upload your first zine and start building your creative portfolio."
                 : ""
-              : "You can bookmark by adding images as favourite."}
+              : "They will show up here."}
           </p>
           {isProfilePage && isOwnProfile && onUploadClick && (
             <Button

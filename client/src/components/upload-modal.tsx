@@ -48,6 +48,7 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
   const [url, setURL] = useState("");
   const [isUploading, setIsUploading] = useState(false);
   const [currentPreviewIndex, setCurrentPreviewIndex] = useState(0);
+  const [currentStep, setCurrentStep] = useState(1); // Upload, Step 2: Details
 
   const fileUrls = useMemo(() => {
     return files.map((file) => URL.createObjectURL(file));
@@ -227,11 +228,10 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
     e.preventDefault();
     console.log("🎯 FRONTEND UPLOAD SUBMIT TRIGGERED");
 
-    if (!user || files.length === 0 || !title.trim()) {
+    if (!user || files.length === 0) {
       toast({
         title: "Missing information",
-        description:
-          "Please fill in all required fields and select at least one file.",
+        description: "Please select at least one file.",
         variant: "destructive",
       });
       return;
@@ -256,7 +256,7 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
       );
 
       const zineData = {
-        title: title.trim(),
+        title: title.trim() || "Untitled",
         description: description.trim() || null,
         aspectRatio: getAspectRatio(),
         creatorId: user.id,
@@ -296,6 +296,7 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
     setURL("");
     setIsUploading(false);
     setCurrentPreviewIndex(0);
+    setCurrentStep(1); // Reset to step 1
     onClose();
   };
 
@@ -311,59 +312,180 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
     }
   };
 
-  return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl mx-4 p-0 overflow-hidden bg-[#000] opacity-90 text-white">
-        <div className="flex h-[600px]">
-          <span className="text-xl ml-[20px] mt-[10px] bg-[#000] opacity-90 font-semibold text-white">
-            Add Details
-          </span>
-          {/* Left Side - Preview Pane */}
-          <div className="flex-1 bg-[#000] opacity-90 relative flex items-center justify-center">
-            {files.length === 0 ? (
-              /* Empty state - Instagram-style drop zone */
-              <div className="text-center text-gray-700">
-                <input
-                  type="file"
-                  multiple
-                  accept="image/*,video/*"
-                  onChange={handleFileChange}
-                  className="hidden"
-                  id="file-upload"
-                />
-                <label htmlFor="file-upload" className="cursor-pointer">
-                  <div className="space-y-4">
-                    <div className="w-16 h-16 flex items-center justify-center mx-auto">
-                      <i className="fas fa-arrow-up-from-bracket text-gray-500 text-5xl"></i>
-                    </div>
-                    <div>
-                      <h3 className="text-xl text-white font-semibold mb-2">
-                        Upload your zine
-                      </h3>
-                      <p className="text-gray-500 mb-4">
-                        Drag and drop images here, or click to browse
-                      </p>
-                      <div className="inline-block text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 hover:text-gray-700 transition-colors bg-gray-500">
-                        Choose Files
-                      </div>
-                    </div>
-                  </div>
-                </label>
+  const handleNext = () => {
+    if (files.length === 0) {
+      toast({
+        title: "No files selected",
+        description: "Please select at least one file before proceeding.",
+        variant: "destructive",
+      });
+      return;
+    }
+    setCurrentStep(2);
+  };
+
+  const handleBack = () => {
+    if (currentStep === 2) {
+      setCurrentStep(1);
+    } else {
+      handleClose();
+    }
+  };
+
+  // Upload Component
+  const renderUploadStep = () => (
+    <DialogContent className="max-w-lg mx-4 p-0 overflow-hidden bg-[#2a2a2a] border-gray-700">
+      <div className="relative">
+        {/* Close button */}
+        <button
+          onClick={handleClose}
+          className="absolute top-4 right-4 z-10 text-gray-400 hover:text-white transition-colors"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
+        <div className="p-8 text-center">
+          {files.length === 0 ? (
+            <div className="space-y-6 border border-[#a0a0a0cc] py-12 border-dashed  rounded-lg mt-10">
+              <div className="w-16 h-16 mx-auto flex items-center justify-center mb-[-20px]">
+                <i className="fa-solid fa-arrow-up-from-bracket font-bold text-[#8d8a8a] text-4xl"></i>
               </div>
-            ) : (
-              /* Preview with navigation */
-              <div className="relative w-full h-full flex items-center justify-center">
-                {/* Image container with aspect ratio */}
-                <div
-                  className={`relative ${getAspectRatioClass(
-                    fileAspectRatios[currentPreviewIndex]
-                  )} max-w-full max-h-full`}
+
+              <div>
+                <h3 className="text-xl font-normal text-white mb-4">
+                  Upload your zine
+                </h3>
+                <p className="text-[#8d8a8a] mb-6">
+                  Drag and drop images here, or click to browse
+                </p>
+              </div>
+
+              <input
+                type="file"
+                multiple
+                accept="image/*,video/*"
+                onChange={handleFileChange}
+                className="hidden"
+                id="file-upload"
+              />
+              <label htmlFor="file-upload" className="cursor-pointer">
+                <div className="inline-block bg-[#474747] border border-[#a0a0a0cc] hover:bg-[#262626eb] text-white px-4 py-2 rounded-xl font-medium transition-colors">
+                  Choose Files
+                </div>
+              </label>
+            </div>
+          ) : (
+            <div className="space-y-6">
+              <h3 className="text-xl font-semibold text-white">
+                Files Selected
+              </h3>
+
+              {/* File preview thumbnails */}
+              <div className="flex flex-wrap gap-2 justify-center max-h-40 overflow-y-auto">
+                {files.map((file, index) => (
+                  <div key={index} className="relative">
+                    <div className="w-16 h-16 bg-gray-700 rounded overflow-hidden">
+                      {file.type.startsWith("video/") ? (
+                        <video
+                          src={fileUrls[index]}
+                          className="w-full h-full object-cover"
+                          muted
+                        />
+                      ) : (
+                        <img
+                          src={fileUrls[index]}
+                          alt="Preview"
+                          className="w-full h-full object-cover"
+                        />
+                      )}
+                    </div>
+                    <button
+                      onClick={() => removeFile(index)}
+                      className="absolute -top-1 -right-1 bg-red-500 hover:bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              <p className="text-gray-400 text-sm">
+                {files.length} {files.length === 1 ? "file" : "files"} selected
+              </p>
+
+              {/* Add more files option */}
+              {files.length < 5 &&
+                !files.some((f) => f.type.startsWith("video/")) && (
+                  <div>
+                    <input
+                      type="file"
+                      multiple
+                      accept="image/*"
+                      onChange={addMoreFiles}
+                      className="hidden"
+                      id="add-more-files"
+                    />
+                    <label htmlFor="add-more-files" className="cursor-pointer">
+                      <div className="inline-block bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded font-medium transition-colors">
+                        Add More Files
+                      </div>
+                    </label>
+                  </div>
+                )}
+
+              <div className="flex gap-3 pt-4">
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="flex-1 bg-transparent border-gray-600 text-white hover:bg-gray-700"
+                  onClick={handleBack}
                 >
+                  Back
+                </Button>
+                <Button
+                  type="button"
+                  className="flex-1 bg-white hover:bg-gray-100 text-black"
+                  onClick={handleNext}
+                >
+                  Next
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </DialogContent>
+  );
+
+  // Details Component
+  const renderDetailsStep = () => (
+    <DialogContent className="max-w-2xl mx-4 p-0 overflow-hidden bg-[#2a2a2a] border-gray-700">
+      <div className="relative">
+        {/* Close button */}
+        <button
+          onClick={handleClose}
+          className="absolute top-3 right-3 z-10 text-gray-400 hover:text-white transition-colors"
+        >
+          <X className="w-4 h-4" />
+        </button>
+
+        {/* Title - Top Left */}
+        <div className="px-4 pt-4 pb-2 pl-7">
+          <h3 className="text-lg font-medium text-white">Add Details</h3>
+        </div>
+
+        <div className="flex h-[280px]">
+          {/* Left Side - Image Preview */}
+          <div className="w-32 bg-[#2a2a2a] relative flex items-center justify-center">
+            {files.length > 0 && (
+              <div className="relative w-full h-full flex items-center justify-center p-3">
+                {/* Small image container */}
+                <div className="relative w-40 h-40 flex-shrink-0 ml-[90px] mt-[-80px]">
                   {files[currentPreviewIndex].type.startsWith("video/") ? (
                     <video
-                      key={currentPreviewIndex} // FIXED: Add key to force re-mount when switching videos
-                      src={fileUrls[currentPreviewIndex]} // FIXED: Use memoized URL
-                      className="w-full h-full object-contain"
+                      key={currentPreviewIndex}
+                      src={fileUrls[currentPreviewIndex]}
+                      className="w-full h-full object-cover rounded"
                       controls={false}
                       muted
                       autoPlay
@@ -371,94 +493,28 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
                     />
                   ) : (
                     <img
-                      src={fileUrls[currentPreviewIndex]} // FIXED: Use memoized URL
+                      src={fileUrls[currentPreviewIndex]}
                       alt="Preview"
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-cover rounded"
                     />
                   )}
                 </div>
 
-                {/* Overlay controls - positioned relative to the full preview area */}
-                {/* Navigation arrows for multiple files */}
+                {/* Simple navigation for multiple files */}
                 {files.length > 1 && (
-                  <>
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      className="absolute left-4 top-1/2 -translate-y-1/2 bg-gray-800 bg-opacity-80 text-white hover:bg-opacity-90 rounded-full w-8 h-8 p-0 shadow-lg"
-                      onClick={() => navigatePreview("prev")}
-                    >
-                      <ChevronLeft className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      className="absolute right-4 top-1/2 -translate-y-1/2 bg-gray-800 bg-opacity-80 text-white hover:bg-opacity-90 rounded-full w-8 h-8 p-0 shadow-lg"
-                      onClick={() => navigatePreview("next")}
-                    >
-                      <ChevronRight className="w-4 h-4" />
-                    </Button>
-                  </>
-                )}
-
-                {/* Delete current file button */}
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  className="absolute top-4 right-4 bg-gray-800 bg-opacity-80 text-white hover:bg-opacity-90 hover:text-red-400 rounded-full w-8 h-8 p-0 shadow-lg"
-                  onClick={() => removeFile(currentPreviewIndex)}
-                >
-                  <Trash2 className="w-4 h-4" />
-                </Button>
-
-                {/* Add more files button */}
-                {files.length < 5 &&
-                  !files.some((f) => f.type.startsWith("video/")) && (
-                    <div className="absolute bottom-4 right-4">
-                      <input
-                        type="file"
-                        multiple
-                        accept="image/*"
-                        onChange={addMoreFiles}
-                        className="hidden"
-                        id="add-more-files"
-                      />
-                      <label
-                        htmlFor="add-more-files"
-                        className="cursor-pointer"
-                      >
-                        <div className="bg-gray-800 bg-opacity-80 text-white hover:bg-opacity-90 rounded-full w-8 h-8 p-0 shadow-lg flex items-center justify-center transition-all">
-                          <Plus className="w-4 h-4" />
-                        </div>
-                      </label>
-                    </div>
-                  )}
-
-                {/* File indicator dots for multiple files */}
-                {files.length > 1 && (
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1 ml-[40px] mb-[50px]">
                     {files.map((_, index) => (
                       <button
                         key={index}
                         type="button"
-                        className={`w-2 h-2 rounded-full transition-colors ${
+                        className={`w-1.5 h-1.5 rounded-full transition-colors ${
                           index === currentPreviewIndex
-                            ? "bg-gray-800"
-                            : "bg-gray-400"
+                            ? "bg-white"
+                            : "bg-gray-500"
                         }`}
                         onClick={() => setCurrentPreviewIndex(index)}
                       />
                     ))}
-                  </div>
-                )}
-
-                {/* File counter */}
-                {files.length > 1 && (
-                  <div className="absolute top-4 left-4 bg-gray-800 bg-opacity-80 text-white text-sm px-2 py-1 rounded shadow-lg">
-                    {currentPreviewIndex + 1} / {files.length}
                   </div>
                 )}
               </div>
@@ -466,35 +522,13 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
           </div>
 
           {/* Right Side - Form */}
-          <div className="w-80 bg-[#000] opacity-90 p-6 flex flex-col">
-            <form
-              onSubmit={handleSubmit}
-              className="flex-1 flex flex-col space-y-4"
-            >
-              {/* Title Input */}
-              {/* <div>
-                <Label
-                  htmlFor="title"
-                  className="text-sm font-medium text-gray-700"
-                >
-                  Title *
-                </Label>
-                <Input
-                  id="title"
-                  type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  placeholder="Give your zine a title..."
-                  className="mt-1 focus:border-[#2b3012] focus:ring-[#2b3012]"
-                  required
-                />
-              </div> */}
-
-              {/* Description Input */}
-              <div className="flex-1 mb-[-70px]">
+          <div className="flex-1 bg-[#2a2a2a] p-4 ml-[80px]">
+            <form onSubmit={handleSubmit} className="h-full flex flex-col">
+              {/* Blurb/Description */}
+              <div className="mb-4">
                 <Label
                   htmlFor="description"
-                  className="text-sm font-medium text-white"
+                  className="text-sm text-white mb-2 block"
                 >
                   Blurb
                 </Label>
@@ -503,61 +537,40 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Write a short description about your zine..."
-                  className="mt-1 h-32 border-r-0 border-l-0 border-t-0 border-b border-b-[#7c7c7c] rounded-none resize-none text-white focus:border-[#2b3012] bg-transparent focus:ring-[#2b3012]"
+                  className="w-full h-16 pl-0 bg-transparent border-0 border-b border-gray-600 rounded-none resize-none text-white placeholder-gray-500 focus:border-gray-400 focus:ring-0 text-sm"
                 />
               </div>
 
-              <div className="flex-1">
-                <Label
-                  htmlFor="description"
-                  className="text-sm font-medium text-white"
-                >
+              {/* Website URL */}
+              <div className="mb-6">
+                <Label htmlFor="url" className="text-sm text-white mb-2 block">
                   Website URL (Optional)
                 </Label>
-                <br></br>
                 <input
                   id="url"
                   type="url"
                   value={url}
                   onChange={(e) => setURL(e.target.value)}
                   placeholder="https://example.com"
-                  className="mt-1 w-[100%] h-10 pr-[5px] pl-[10px] text-white bg-transparent border-b  border-b-[#7c7c7c] resize-none focus:border-[#2b3012] focus:ring-[#2b3012]"
+                  className="w-full h-8 px-0 py-1 pl-0 bg-transparent border-0 border-b border-gray-600 text-white placeholder-gray-500 focus:border-gray-400 focus:ring-0 focus:outline-none text-sm"
                 />
               </div>
 
-              {/* File info */}
-              {files.length > 0 && (
-                <div className="text-sm text-gray-500 p-3 bg-gray-50 rounded">
-                  {files.length === 1 ? (
-                    <p>
-                      1 {files[0].type.startsWith("video/") ? "video" : "image"}{" "}
-                      selected
-                    </p>
-                  ) : (
-                    <p>{files.length} images selected (carousel)</p>
-                  )}
-                </div>
-              )}
-
-              {/* Action Buttons */}
-              <div className="flex space-x-3 pt-4 mt-auto">
+              {/* Action Buttons - Positioned to the right */}
+              <div className="flex justify-end gap-2 mt-auto">
                 <Button
                   type="button"
                   variant="outline"
-                  className="flex-1 bg-[#000] opacity-90"
-                  onClick={handleClose}
+                  className="px-4 py-2 bg-transparent border border-gray-600 text-white hover:bg-gray-700 text-sm h-8"
+                  onClick={handleBack}
                   disabled={isUploading}
                 >
                   Back
                 </Button>
                 <Button
                   type="submit"
-                  className="flex-1 bg-[#fff] hover:bg-white text-black"
-                  disabled={
-                    isUploading ||
-                    createZineMutation.isPending ||
-                    files.length === 0
-                  }
+                  className="px-4 py-2 bg-white hover:bg-gray-100 text-black text-sm h-8"
+                  disabled={isUploading || createZineMutation.isPending}
                 >
                   {isUploading ? "Publishing..." : "Publish"}
                 </Button>
@@ -565,7 +578,13 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
             </form>
           </div>
         </div>
-      </DialogContent>
+      </div>
+    </DialogContent>
+  );
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      {currentStep === 1 ? renderUploadStep() : renderDetailsStep()}
     </Dialog>
   );
 }

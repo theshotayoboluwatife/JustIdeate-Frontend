@@ -76,12 +76,12 @@ export function Header({}: HeaderProps) {
                 >
                   <span>About</span>
                 </div>
-                <div
+                {/* <div
                   className="text-white cursor-pointer hover:opacity-80 transition-opacity"
                   onClick={() => (window.location.href = "/resources")}
                 >
                   <span>Resources</span>
-                </div>
+                </div>*/}
               </div>
             </div>
             {/* Right Side - Upload & Profile */}
