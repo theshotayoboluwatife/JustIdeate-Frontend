@@ -579,7 +579,7 @@ export function ZineCard({ zine, onExpand }: ZineCardProps) {
   return (
     <div>
       <motion.div
-        className="masonry-item bg-background rounded-2xl overflow-hidden group cursor-pointer border border-border"
+        className="masonry-item bg-background rounded-lg overflow-hidden group cursor-pointer border border-border"
         variants={cardHoverVariants}
         initial="rest"
         whileHover="hover"
@@ -633,7 +633,7 @@ export function ZineCard({ zine, onExpand }: ZineCardProps) {
             className="w-full hidden flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100"
             style={{ minHeight: "200px" }}
           >
-            <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center mb-3">
+            <div className="w-12 h-12 bg-gray-200 rounded-md flex items-center justify-center mb-3">
               <svg
                 className="w-6 h-6 text-gray-400"
                 fill="none"
@@ -696,74 +696,6 @@ export function ZineCard({ zine, onExpand }: ZineCardProps) {
                   />
                 )}
               </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="p-4">
-          <h3 className="font-heading font-bold text-foreground text-base mb-2 leading-tight line-clamp-2">
-            {zine.title}
-          </h3>
-          <div className="flex items-center justify-between">
-            {/* Creator Profile Section */}
-            <div className="flex items-center space-x-3 flex-1">
-              <div
-                className="flex items-center space-x-3 cursor-pointer"
-                onClick={handleCreatorClick}
-              >
-                <Avatar className="w-6 h-6">
-                  <AvatarImage
-                    src={zine.creator.profileImageUrl || undefined}
-                    alt={zine.creator.username}
-                  />
-                  <AvatarFallback className="text-xs">
-                    {zine.creator.username.slice(0, 2).toUpperCase()}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-foreground text-sm hover:text-just-ideate-primary transition-colors truncate">
-                    {zine.creator.username}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-2">
-              {/* <div className="flex items-center space-x-1 text-muted-foreground">
-                <Star className="w-3 h-3" />
-                {(zine.favoriteCount ?? 0) > 0 && (
-                  <span className="text-xs font-medium">
-                    {zine.favoriteCount}
-                  </span>
-                )}
-              </div> */}
-
-              {isOwner && (
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="h-6 w-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <MoreVertical className="h-3 w-3" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setShowDeleteDialog(true);
-                      }}
-                      className="text-red-600 focus:text-red-600"
-                    >
-                      <Trash2 className="w-4 h-4 mr-2" />
-                      Delete Zine
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              )}
             </div>
           </div>
         </div>

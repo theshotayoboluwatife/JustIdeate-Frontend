@@ -55,7 +55,7 @@ export function MasonryGrid({
             {Array.from({ length: 6 }).map((_, index) => (
               <div
                 key={index}
-                className="masonry-item bg-gray-200 rounded-xl animate-pulse"
+                className="masonry-item bg-gray-200 rounded-md animate-pulse"
                 style={{
                   height: `${200 + Math.random() * 300}px`,
                   width: "300px",
@@ -72,7 +72,7 @@ export function MasonryGrid({
     return (
       <div className="mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center bg-black">
         <div className="max-w-md mx-auto">
-          <div className="w-16 h-16 bg-subtle-custom rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 bg-subtle-custom rounded-md flex items-center justify-center mx-auto mb-4">
             {isProfilePage ? (
               <Plus className="w-8 h-8 text-gray-400" />
             ) : (
@@ -96,14 +96,14 @@ export function MasonryGrid({
               ? isOwnProfile
                 ? "Start sharing your creativity"
                 : "No zines yet"
-              : "No Bookmark found"}
+              : "Try saving some posts"}
           </h3>
           <p className="text-secondary-custom mb-4">
             {isProfilePage
               ? isOwnProfile
                 ? "Upload your first zine and start building your creative portfolio."
                 : ""
-              : "You can bookmark by adding images as favourite."}
+              : "They will show up here."}
           </p>
           {isProfilePage && isOwnProfile && onUploadClick && (
             <Button

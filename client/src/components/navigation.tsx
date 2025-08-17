@@ -36,22 +36,7 @@ export function Navigation({
         <nav className="flex justify-center space-x-12">
           {/* Browse Tab */}
           {window.location.pathname === "/bookmarks" ? (
-            <>
-              <motion.button
-                onClick={() => (window.location.href = "/")}
-                className={`px-2 font-normal font-[raleway] mt-[-20px] mb-[-10px] text-[16px] transition-colors ${
-                  activeTab === "all"
-                    ? "border-[1px] border-gray-500 rounded-xl text-white"
-                    : "border-transparent text-white hover:text-[#666666]"
-                }`}
-                variants={buttonVariants}
-                initial="rest"
-                whileHover="hover"
-                whileTap="tap"
-              >
-                Browse
-              </motion.button>
-            </>
+            <></>
           ) : (
             <>
               <motion.button
@@ -108,23 +93,6 @@ export function Navigation({
             Popular
           </motion.button> */}
           {/* Favorites Tab */}
-          {window.location.pathname === "/bookmarks" && (
-            <motion.button
-              onClick={() => handleTabChange("favorites")}
-              className={`px-2 font-normal font-[raleway] mt-[-20px] mb-[-10px] text-[16px] transition-colors 
-      ${
-        activeTab === "favorites"
-          ? "border-gray-500 text-white border-[1px] rounded-xl"
-          : "border-gray-500 text-white hover:text-[#666666]"
-      }`}
-              variants={buttonVariants}
-              initial="rest"
-              whileHover="hover"
-              whileTap="tap"
-            >
-              Bookmark
-            </motion.button>
-          )}
         </nav>
       </div>
     </div>

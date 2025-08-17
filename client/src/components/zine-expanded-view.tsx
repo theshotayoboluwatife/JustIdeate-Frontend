@@ -137,15 +137,15 @@ export function ZineExpandedView({
       <DialogContent className="max-w-lg w-full max-h-[95vh] p-0 bg-white overflow-hidden">
         <div className="flex flex-col h-full max-h-[95vh]">
           {/* Header */}
-          <div className="absolute top-4 right-4 z-10">
-            <Button
-              variant="ghost"
-              size="icon"
+          <div className="absolute top-1 right-1 z-10">
+            <span
               onClick={onClose}
-              className="bg-white/80 backdrop-blur-sm hover:bg-white/90 text-gray-700 rounded-full shadow-sm"
+              className="flex items-center justify-center w-10 h-10 rounded-full 
+               bg-white text-black
+                cursor-pointer"
             >
               <X className="w-5 h-5" />
-            </Button>
+            </span>
           </div>
 
           {/* Creator Info at Top */}
