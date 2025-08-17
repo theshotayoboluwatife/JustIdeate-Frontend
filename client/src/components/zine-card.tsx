@@ -579,7 +579,7 @@ export function ZineCard({ zine, onExpand }: ZineCardProps) {
   return (
     <div>
       <motion.div
-        className="masonry-item bg-background rounded-2xl overflow-hidden group cursor-pointer border border-border"
+        className="masonry-item bg-background rounded-lg overflow-hidden group cursor-pointer border border-border"
         variants={cardHoverVariants}
         initial="rest"
         whileHover="hover"
@@ -633,7 +633,7 @@ export function ZineCard({ zine, onExpand }: ZineCardProps) {
             className="w-full hidden flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100"
             style={{ minHeight: "200px" }}
           >
-            <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center mb-3">
+            <div className="w-12 h-12 bg-gray-200 rounded-md flex items-center justify-center mb-3">
               <svg
                 className="w-6 h-6 text-gray-400"
                 fill="none"
