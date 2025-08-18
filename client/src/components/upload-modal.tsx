@@ -537,7 +537,7 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Write a short description about your zine..."
-                  className="w-full h-16 pl-0 bg-transparent border-0 border-b border-gray-600 rounded-none resize-none text-white placeholder-gray-500 focus:border-gray-400 focus:ring-0 text-sm"
+                  className="w-full h-16 pl-2 bg-transparent border-0 border-b border-gray-600 rounded-none resize-none text-white placeholder-gray-500 focus:border-gray-400 focus:ring-0 text-sm"
                 />
               </div>
 
