@@ -401,7 +401,7 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
                     </div>
                     <button
                       onClick={() => removeFile(index)}
-                      className="absolute -top-1 -right-1 bg-red-500 hover:bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+                      className="absolute -top-0 -right-0 bg-red-500 hover:bg-red-600 text-white rounded-full w-4 pl-[5px] pr-[4px] pb-[5px] pt-[4px] h-4 flex items-center justify-center text-xs"
                     >
                       ×
                     </button>
@@ -537,7 +537,7 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Write a short description about your zine..."
-                  className="w-full h-16 pl-0 bg-transparent border-0 border-b border-gray-600 rounded-none resize-none text-white placeholder-gray-500 focus:border-gray-400 focus:ring-0 text-sm"
+                  className="w-full h-16 pl-2 bg-transparent border-0 border-b border-gray-600 rounded-none resize-none text-white placeholder-gray-500 focus:border-gray-400 focus:ring-0 text-sm"
                 />
               </div>
 
