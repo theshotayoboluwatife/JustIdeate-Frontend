@@ -401,7 +401,7 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
                     </div>
                     <button
                       onClick={() => removeFile(index)}
-                      className="absolute -top-1 -right-1 bg-red-500 hover:bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+                      className="absolute -top-0 -right-0 bg-red-500 hover:bg-red-600 text-white rounded-full w-4 pl-[5px] pr-[4px] pb-[5px] pt-[4px] h-4 flex items-center justify-center text-xs"
                     >
                       ×
                     </button>
