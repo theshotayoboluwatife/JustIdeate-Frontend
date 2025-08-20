@@ -557,6 +557,7 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
               </div>
 
               {/* Action Buttons - Positioned to the right */}
+              {/*  */}
               <div className="flex justify-end gap-2 mt-auto">
                 <Button
                   type="button"

@@ -32,6 +32,7 @@ function Router() {
         <Route path="/" component={Home} />
         <Route path="/about" component={About} />
         <Route path="/bookmarks" component={Bookmark} />
+        {/*<Route path="/profile/:id" component={Profile} />*/}
         <Route path="/profile/:id" component={Profile} />
         <Route path="/auth/update-password" component={UpdatePasswordPage} />
         <Route path="/account-settings" component={AccountSettings} />

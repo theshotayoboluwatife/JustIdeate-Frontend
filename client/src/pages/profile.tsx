@@ -7,6 +7,7 @@ import { Workspace } from "@/components/workspace";
 import { Footer } from "@/components/footer";
 import { UploadModal } from "@/components/upload-modal";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -139,7 +140,7 @@ function CreatorsGrid({ creators, isLoading }: CreatorsGridProps) {
               d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
             />
           </svg>
-          <h3 className="mt-2 text-sm font-medium text-gray-400">
+          <h3 className="mt-2 text-sm font-medium text-gray-900">
             No creators found
           </h3>
         </div>
@@ -187,20 +188,22 @@ export default function Profile() {
   const [editedBio, setEditedBio] = useState("");
   const [editedWebsiteUrl, setEditedWebsiteUrl] = useState("");
 
+  // Handle both UUID and numeric IDs
   let profileId: string;
-  let isOwnProfile = false; // Default to false
+  let isOwnProfile = false;
 
   if (id) {
-    if (id === "own-user") {
-      profileId = "mock-user-123"; // Use mock user for demo
-      isOwnProfile = true; // Always true for this specific route
-    } else {
-      profileId = id;
-      isOwnProfile = false; // Always false for other user IDs
-    }
+    profileId = id;
+    isOwnProfile = currentUser?.id === id;
   } else {
-    profileId = currentUser?.id || "mock-user-123";
-    isOwnProfile = !!currentUser; // True only if user is logged in
+    // Default to current user's profile
+    profileId = currentUser?.id;
+    isOwnProfile = !!currentUser;
+  }
+
+  // Additional check: if we have a currentUser and the profileId matches, it's their own profile
+  if (currentUser && currentUser.id === profileId) {
+    isOwnProfile = true;
   }
 
   console.log("Profile component:", {
@@ -407,9 +410,9 @@ export default function Profile() {
   const handleCancelEdit = () => {
     setIsEditingName(false);
     setIsEditingBio(false);
-    setEditedName("");
-    setEditedBio("");
-    setEditedWebsiteUrl("");
+    // setEditedName("");
+    // setEditedBio("");
+    //    setEditedWebsiteUrl("");
   };
 
   const handleProfileImageChange = async (
@@ -497,27 +500,39 @@ export default function Profile() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="relative flex flex-col lg:flex-row items-center lg:items-start lg:space-x-8">
             {/* Profile Photo with Hover Bio */}
-            <div className="relative group w-32 h-32 mb-6">
+            <div className="relative group w-40 h-40 mb-6 ml-[-10px] xl:ml-[-40px] lg:ml-[-50px]">
               {/* Hover Bio Tooltip */}
-              {user.bio && user.websiteUrl && (
-                <a
-                  href={user.websiteUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute ml-[100px] mt-[-30px] xl:ml-[-150px] xl:mt-[45px] lg:ml-[-140px] lg:mt-[45px] md:ml-[-100px] md:mt-[45px] -top-4 -left-44 z-10 hidden group-hover:block max-w-xs p-3 rounded-3xl bg-white/10 backdrop-blur-md border border-white/30 text-white text-sm shadow-lg transition-opacity duration-300"
-                >
-                  <div className="relative">
-                    <span className="block break-words whitespace-pre-wrap">
-                      {user.bio}
-                    </span>
-                    <div className="absolute -right-2 bottom-2 w-3 h-3 bg-white/10 border-t border-l border-white/30 rotate-45 backdrop-blur-md"></div>
+              {user.bio &&
+                (user.websiteUrl ? (
+                  <a
+                    href={
+                      user.websiteUrl.startsWith("http")
+                        ? user.websiteUrl
+                        : `https://${user.websiteUrl}`
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute right-[125px] top-1/2 transform -translate-y-1/2 z-10 hidden group-hover:block w-max max-w-[300px] p-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/30 text-white text-sm shadow-lg transition-opacity duration-300 cursor-pointer"
+                  >
+                    <div className="relative">
+                      <span className="block break-words whitespace-pre-wrap">
+                        {user.bio}
+                      </span>
+                    </div>
+                  </a>
+                ) : (
+                  <div className="absolute right-16 top-1/2 transform -translate-y-1/2 z-10 hidden group-hover:block w-max max-w-[300px] p-3 rounded-3xl bg-white/10 backdrop-blur-md border border-white/30 text-white text-sm shadow-lg transition-opacity duration-300">
+                    <div className="relative">
+                      <span className="block break-words whitespace-pre-wrap">
+                        {user.bio}
+                      </span>
+                    </div>
                   </div>
-                </a>
-              )}
+                ))}
 
               {/* Actual Profile Image */}
               <div
-                className={`w-40 h-40 rounded-full overflow-hidden border border-[#5d5d5d] bg-gray-200 flex items-center justify-center relative ml-[-10px] xl:ml-[-40px] lg:ml-[-50px] ${
+                className={`w-40 h-40 rounded-full overflow-hidden border border-[#5d5d5d] bg-gray-200 flex items-center justify-center relative ${
                   isOwnProfile ? "group cursor-pointer" : ""
                 }`}
               >
@@ -684,7 +699,7 @@ export default function Profile() {
                 {/* Always Show Follow Button */}
 
                 <div className="flex items-center space-x-2 font-[raleway]">
-                  {window.location.pathname === "/profile/own-user" ? (
+                  {isOwnProfile ? (
                     <>
                       {!isEditingBio && (
                         <Button
@@ -732,7 +747,7 @@ export default function Profile() {
                 {isEditingBio && isOwnProfile && (
                   <div className="flex flex-col items-center lg:items-start space-y-4 max-w-2xl mx-auto px-4">
                     <Textarea
-                      value={editedBio}
+                      value={editedBio ?? user.bio ?? ""}
                       onChange={(e) => setEditedBio(e.target.value)}
                       className="mt-1 h-20 border-r border-l border-t border-b border-[#7c7c7c] rounded-none resize-none text-white focus:border-[#2b3012] bg-transparent focus:ring-[#2b3012]"
                       rows={3}
@@ -740,14 +755,14 @@ export default function Profile() {
                     />
                     <input
                       type="url"
-                      value={editedWebsiteUrl}
+                      value={editedWebsiteUrl ?? user.websiteUrl ?? ""}
                       onChange={(e) => setEditedWebsiteUrl(e.target.value)}
                       placeholder="Website or portfolio URL (optional)"
                       className="mt-1 w-[100%] h-10 pr-[5px] placeholder:text-[13px] pl-[10px] text-white bg-transparent border-r border-l border-t border-b border-[#7c7c7c] resize-none focus:border-[#2b3012] focus:ring-[#2b3012]"
                     />
                     <div className="flex space-x-2">
                       <Button
-                        className="bg-[#d1ead4] border border-[#5d5d5d] text-black hover:text-white hover:bg-[#5d5d5d] font-[raleway] text-[13px]"
+                        className="bg-white text-black border border-black hover:bg-gray-700 hover:text-white font-[raleway] text-[13px]"
                         size="sm"
                         onClick={handleSaveBio}
                         disabled={updateProfileMutation.isPending}
@@ -755,7 +770,7 @@ export default function Profile() {
                         <Check className="w-4 h-4" />
                       </Button>
                       <Button
-                        className="bg-[#d8aeae] border border-[#5d5d5d] text-black hover:text-white hover:bg-[#5d5d5d] font-[raleway] text-[13px]"
+                        className="bg-transparent text-white border border-white hover:bg-gray-700 hover:text-white font-[raleway] text-[13px]"
                         size="sm"
                         variant="outline"
                         onClick={handleCancelEdit}
@@ -791,17 +806,17 @@ export default function Profile() {
                 </button>
 
                 {/* <button
-                  onClick={() => setActiveTab("workspace")}
-                  className={`pb-3 px-2 border-b-2 font-semibold text-lg transition-colors ${
-                    activeTab === "workspace"
-                      ? "border-[#364636] text-[#364636]"
-                      : "border-transparent text-black hover:text-gray-700"
-                  }`}
-                >
-                  <Clock className="w-4 h-4 mr-2 inline" />
-                  Workspace
-                </button>
- */}
+                        onClick={() => setActiveTab("workspace")}
+                        className={`pb-3 px-2 border-b-2 font-semibold text-lg transition-colors ${
+                          activeTab === "workspace"
+                            ? "border-[#364636] text-[#364636]"
+                            : "border-transparent text-black hover:text-gray-700"
+                        }`}
+                      >
+                        <Clock className="w-4 h-4 mr-2 inline" />
+                        Workspace
+                      </button>
+       */}
                 <button
                   onClick={() => setActiveTab("favorites")}
                   className={`px-2  font-normal font-[raleway] text-[16px] transition-colors ${
