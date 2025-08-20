@@ -512,7 +512,8 @@ export default function Profile() {
                     }
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="absolute right-[125px] top-1/2 transform -translate-y-1/2 z-10 hidden group-hover:block w-max max-w-[300px] p-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/30 text-white text-sm shadow-lg transition-opacity duration-300 cursor-pointer"
+                    className="absolute right-[125px] top-1/2 transform -translate-y-1/2 z-10 hidden group-hover:block w-max max-w-[300px] p-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/30 text-white text-sm shadow-[0_8px_24px_rgba(0,0,0,0.4)]
+ transition-opacity duration-300 cursor-pointer"
                   >
                     <div className="relative">
                       <span className="block break-words whitespace-pre-wrap">
@@ -521,7 +522,10 @@ export default function Profile() {
                     </div>
                   </a>
                 ) : (
-                  <div className="absolute right-16 top-1/2 transform -translate-y-1/2 z-10 hidden group-hover:block w-max max-w-[300px] p-3 rounded-3xl bg-white/10 backdrop-blur-md border border-white/30 text-white text-sm shadow-lg transition-opacity duration-300">
+                  <div
+                    className="absolute right-16 top-1/2 transform -translate-y-1/2 z-10 hidden group-hover:block w-max max-w-[300px] p-3 rounded-3xl bg-white/10 backdrop-blur-md border border-white/30 text-white text-sm shadow-[0_8px_24px_rgba(0,0,0,0.4)]
+ transition-opacity duration-300"
+                  >
                     <div className="relative">
                       <span className="block break-words whitespace-pre-wrap">
                         {user.bio}
