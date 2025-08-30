@@ -359,24 +359,25 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
     }
   };
 
-  // Full Size Image Preview Modal
+  // Full Size Image Preview Modal - FIXED for responsive sizing
   const renderImagePreviewModal = () => {
     if (!showImagePreview) return null;
 
     return (
       <div
-        className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center"
+        className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center p-4"
         style={{ zIndex: 9999 }}
       >
         <div className="absolute inset-0" onClick={closeImagePreview} />
 
-        <div className="relative max-w-4xl max-h-[90vh] w-full h-full flex items-center justify-center p-4 z-10">
+        {/* Main container with proper max dimensions */}
+        <div className="relative w-full h-full max-w-4xl max-h-screen flex items-center justify-center z-10">
           {/* Close button */}
           <button
             onClick={closeImagePreview}
-            className="absolute top-4 right-4 z-20 text-white hover:text-gray-300 transition-colors bg-black bg-opacity-50 rounded-full p-2"
+            className="absolute top-2 right-2 z-20 text-white hover:text-gray-300 transition-colors bg-black bg-opacity-50 rounded-full p-2"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5" />
           </button>
 
           {/* Navigation buttons */}
@@ -384,25 +385,29 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
             <>
               <button
                 onClick={() => navigateImagePreview("prev")}
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 text-white hover:text-gray-300 transition-colors bg-black bg-opacity-50 rounded-full p-2"
+                className="absolute left-2 top-1/2 -translate-y-1/2 z-20 text-white hover:text-gray-300 transition-colors bg-black bg-opacity-50 rounded-full p-2"
               >
-                <ChevronLeft className="w-6 h-6" />
+                <ChevronLeft className="w-5 h-5" />
               </button>
               <button
                 onClick={() => navigateImagePreview("next")}
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 text-white hover:text-gray-300 transition-colors bg-black bg-opacity-50 rounded-full p-2"
+                className="absolute right-2 top-1/2 -translate-y-1/2 z-20 text-white hover:text-gray-300 transition-colors bg-black bg-opacity-50 rounded-full p-2"
               >
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight className="w-5 h-5" />
               </button>
             </>
           )}
 
-          {/* Main image/video */}
-          <div className="relative max-w-full max-h-full z-10">
+          {/* Main image/video container with proper responsive sizing */}
+          <div className="relative w-full h-full flex items-center justify-center">
             {files[imagePreviewIndex]?.type.startsWith("video/") ? (
               <video
                 src={fileUrls[imagePreviewIndex]}
-                className="max-w-full max-h-full object-contain"
+                className="max-w-full max-h-full w-auto h-auto object-contain"
+                style={{
+                  maxWidth: "calc(100vw - 2rem)",
+                  maxHeight: "calc(100vh - 8rem)",
+                }}
                 controls
                 autoPlay
               />
@@ -410,46 +415,52 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
               <img
                 src={fileUrls[imagePreviewIndex]}
                 alt="Full size preview"
-                className="max-w-full max-h-full object-contain"
+                className="max-w-full max-h-full w-auto h-auto object-contain"
+                style={{
+                  maxWidth: "calc(100vw - 2rem)",
+                  maxHeight: "calc(100vh - 8rem)",
+                }}
               />
             )}
           </div>
 
           {/* Image counter */}
           {files.length > 1 && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black bg-opacity-70 text-white px-3 py-1 rounded-full text-sm z-20">
+            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 bg-black bg-opacity-70 text-white px-3 py-1 rounded-full text-sm z-20 sm:bottom-20">
               {imagePreviewIndex + 1} / {files.length}
             </div>
           )}
 
-          {/* Thumbnail navigation */}
+          {/* Thumbnail navigation - responsive positioning */}
           {files.length > 1 && (
-            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex space-x-2 max-w-full overflow-x-auto px-4 z-20">
-              {files.map((file, index) => (
-                <button
-                  key={index}
-                  onClick={() => setImagePreviewIndex(index)}
-                  className={`flex-shrink-0 w-12 h-12 rounded overflow-hidden border-2 transition-all ${
-                    index === imagePreviewIndex
-                      ? "border-white"
-                      : "border-transparent opacity-60 hover:opacity-80"
-                  }`}
-                >
-                  {file.type.startsWith("video/") ? (
-                    <video
-                      src={fileUrls[index]}
-                      className="w-full h-full object-cover"
-                      muted
-                    />
-                  ) : (
-                    <img
-                      src={fileUrls[index]}
-                      alt={`Thumbnail ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  )}
-                </button>
-              ))}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex space-x-2 max-w-full overflow-x-auto px-4 z-20 sm:bottom-4">
+              <div className="flex space-x-2 min-w-max">
+                {files.map((file, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setImagePreviewIndex(index)}
+                    className={`flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded overflow-hidden border-2 transition-all ${
+                      index === imagePreviewIndex
+                        ? "border-white"
+                        : "border-transparent opacity-60 hover:opacity-80"
+                    }`}
+                  >
+                    {file.type.startsWith("video/") ? (
+                      <video
+                        src={fileUrls[index]}
+                        className="w-full h-full object-cover"
+                        muted
+                      />
+                    ) : (
+                      <img
+                        src={fileUrls[index]}
+                        alt={`Thumbnail ${index + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                    )}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
         </div>
@@ -688,7 +699,6 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
               </div>
 
               {/* Action Buttons - Positioned to the right */}
-              {/*  */}
               <div className="flex justify-end gap-2 mt-auto">
                 <Button
                   type="button"
