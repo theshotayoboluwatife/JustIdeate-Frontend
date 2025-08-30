@@ -49,6 +49,8 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
   const [isUploading, setIsUploading] = useState(false);
   const [currentPreviewIndex, setCurrentPreviewIndex] = useState(0);
   const [currentStep, setCurrentStep] = useState(1); // Upload, Step 2: Details
+  const [showImagePreview, setShowImagePreview] = useState(false);
+  const [imagePreviewIndex, setImagePreviewIndex] = useState(0);
 
   const fileUrls = useMemo(() => {
     return files.map((file) => URL.createObjectURL(file));
@@ -205,6 +207,23 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
     }
   };
 
+  const navigateImagePreview = (direction: "prev" | "next") => {
+    if (direction === "prev") {
+      setImagePreviewIndex((prev) => (prev > 0 ? prev - 1 : files.length - 1));
+    } else {
+      setImagePreviewIndex((prev) => (prev < files.length - 1 ? prev + 1 : 0));
+    }
+  };
+
+  const openImagePreview = (index: number) => {
+    setImagePreviewIndex(index);
+    setShowImagePreview(true);
+  };
+
+  const closeImagePreview = () => {
+    setShowImagePreview(false);
+  };
+
   const getAspectRatioClass = (ratio: string) => {
     switch (ratio) {
       case "1:1":
@@ -288,6 +307,12 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
   }
 
   const handleClose = () => {
+    // Only close if image preview is not showing
+    if (showImagePreview) {
+      setShowImagePreview(false);
+      return;
+    }
+
     // FIXED: Clean up object URLs to prevent memory leaks
     fileUrls.forEach((url) => URL.revokeObjectURL(url));
     setFiles([]);
@@ -297,6 +322,8 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
     setIsUploading(false);
     setCurrentPreviewIndex(0);
     setCurrentStep(1); // Reset to step 1
+    setShowImagePreview(false); // Close image preview
+    setImagePreviewIndex(0);
     onClose();
   };
 
@@ -330,6 +357,104 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
     } else {
       handleClose();
     }
+  };
+
+  // Full Size Image Preview Modal
+  const renderImagePreviewModal = () => {
+    if (!showImagePreview) return null;
+
+    return (
+      <div
+        className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center"
+        style={{ zIndex: 9999 }}
+      >
+        <div className="absolute inset-0" onClick={closeImagePreview} />
+
+        <div className="relative max-w-4xl max-h-[90vh] w-full h-full flex items-center justify-center p-4 z-10">
+          {/* Close button */}
+          <button
+            onClick={closeImagePreview}
+            className="absolute top-4 right-4 z-20 text-white hover:text-gray-300 transition-colors bg-black bg-opacity-50 rounded-full p-2"
+          >
+            <X className="w-6 h-6" />
+          </button>
+
+          {/* Navigation buttons */}
+          {files.length > 1 && (
+            <>
+              <button
+                onClick={() => navigateImagePreview("prev")}
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 text-white hover:text-gray-300 transition-colors bg-black bg-opacity-50 rounded-full p-2"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button
+                onClick={() => navigateImagePreview("next")}
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 text-white hover:text-gray-300 transition-colors bg-black bg-opacity-50 rounded-full p-2"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </>
+          )}
+
+          {/* Main image/video */}
+          <div className="relative max-w-full max-h-full z-10">
+            {files[imagePreviewIndex]?.type.startsWith("video/") ? (
+              <video
+                src={fileUrls[imagePreviewIndex]}
+                className="max-w-full max-h-full object-contain"
+                controls
+                autoPlay
+              />
+            ) : (
+              <img
+                src={fileUrls[imagePreviewIndex]}
+                alt="Full size preview"
+                className="max-w-full max-h-full object-contain"
+              />
+            )}
+          </div>
+
+          {/* Image counter */}
+          {files.length > 1 && (
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black bg-opacity-70 text-white px-3 py-1 rounded-full text-sm z-20">
+              {imagePreviewIndex + 1} / {files.length}
+            </div>
+          )}
+
+          {/* Thumbnail navigation */}
+          {files.length > 1 && (
+            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex space-x-2 max-w-full overflow-x-auto px-4 z-20">
+              {files.map((file, index) => (
+                <button
+                  key={index}
+                  onClick={() => setImagePreviewIndex(index)}
+                  className={`flex-shrink-0 w-12 h-12 rounded overflow-hidden border-2 transition-all ${
+                    index === imagePreviewIndex
+                      ? "border-white"
+                      : "border-transparent opacity-60 hover:opacity-80"
+                  }`}
+                >
+                  {file.type.startsWith("video/") ? (
+                    <video
+                      src={fileUrls[index]}
+                      className="w-full h-full object-cover"
+                      muted
+                    />
+                  ) : (
+                    <img
+                      src={fileUrls[index]}
+                      alt={`Thumbnail ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    );
   };
 
   // Upload Component
@@ -384,7 +509,10 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
               <div className="flex flex-wrap gap-2 justify-center max-h-40 overflow-y-auto">
                 {files.map((file, index) => (
                   <div key={index} className="relative">
-                    <div className="w-16 h-16 bg-gray-700 rounded overflow-hidden">
+                    <div
+                      className="w-16 h-16 bg-gray-700 rounded overflow-hidden cursor-pointer hover:opacity-80 transition-opacity"
+                      onClick={() => openImagePreview(index)}
+                    >
                       {file.type.startsWith("video/") ? (
                         <video
                           src={fileUrls[index]}
@@ -480,7 +608,10 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
             {files.length > 0 && (
               <div className="relative w-full h-full flex items-center justify-center p-3">
                 {/* Small image container */}
-                <div className="relative w-40 h-40 flex-shrink-0 ml-[90px] mt-[-80px]">
+                <div
+                  className="relative w-40 h-40 flex-shrink-0 ml-[90px] mt-[-80px] cursor-pointer hover:opacity-80 transition-opacity"
+                  onClick={() => openImagePreview(currentPreviewIndex)}
+                >
                   {files[currentPreviewIndex].type.startsWith("video/") ? (
                     <video
                       key={currentPreviewIndex}
@@ -584,8 +715,20 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
   );
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      {currentStep === 1 ? renderUploadStep() : renderDetailsStep()}
-    </Dialog>
+    <>
+      <Dialog
+        open={isOpen && !showImagePreview}
+        onOpenChange={(open) => {
+          if (!open) {
+            onClose();
+          }
+        }}
+      >
+        {currentStep === 1 ? renderUploadStep() : renderDetailsStep()}
+      </Dialog>
+
+      {/* Full Size Image Preview Modal - Rendered outside of Dialog */}
+      {showImagePreview && renderImagePreviewModal()}
+    </>
   );
 }
